@@ -4,6 +4,9 @@ eval_llc_cifar10.py
 保存済みチェックポイントに対して、通常のCIFAR10訓練データで
 LLC(SGLD)を計算する。モーメント編集データとの比較基準として使う。
 
+各stepで num_chains 本の独立したSGLDチェーンを実行し、
+LLCの平均・標準偏差を計算する。各チェーンのloss_traceは全て保存する。
+
 eval_llc_moment_data.py と同じ設計・同じSGLDハイパラを使用する。
 """
 import sys
@@ -53,6 +56,16 @@ def stratified_sample_by_class(x, y, n_total, seed=42):
     return x[selected_indices], y[selected_indices]
 
 
+def compute_lambdahat(loss_trace, init_loss, n, itemp, burn_in_ratio=0.9):
+    trace = np.array(loss_trace)
+    burn_in = int(len(trace) * burn_in_ratio)
+    valid = trace[burn_in:]
+    valid = valid[~np.isnan(valid) & ~np.isinf(valid)]
+    if len(valid) == 0:
+        return float("nan")
+    return float((np.mean(valid) - init_loss) * n * itemp)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--ckpt_dir", type=str,
@@ -69,6 +82,9 @@ def main():
     parser.add_argument("--gamma", type=float, default=1.0)
     parser.add_argument("--sgld_num_steps", type=int, default=3000)
     parser.add_argument("--sgld_batch_size", type=int, default=2048)
+    # --- 追加: 複数チェーン対応 ---
+    parser.add_argument("--num_chains", type=int, default=1,
+                         help="各stepで独立に実行するSGLDチェーンの本数")
     args = parser.parse_args()
 
     out_dir = Path(args.out_dir).expanduser()
@@ -89,6 +105,7 @@ def main():
     n_data = len(x_eval)
     itemp = 1 / np.log(n_data)
     print(f"n = {n_data}, itemp (1/log(n)) = {itemp:.6f}")
+    print(f"num_chains = {args.num_chains}")
 
     model = make_resnet18(num_classes=args.num_classes, k=args.k)
     checkpointer = ocp.PyTreeCheckpointer()
@@ -109,31 +126,48 @@ def main():
         restored = checkpointer.restore(str(ckpt_path.resolve()))
         params, state = restored["params"], restored["state"]
 
-        rng, subkey = jax.random.split(rng)
-        loss_fn = lambda p, x, y: compute_loss(
-            p, state, model, rng, x, y, args.num_classes, is_training=False)[0]
+        # --- num_chains 本の独立したSGLDチェーンを実行 ---
+        chain_results = []
+        lambdahats = []
+        for chain_id in range(args.num_chains):
+            rng, subkey = jax.random.split(rng)
+            loss_fn = lambda p, x, y: compute_loss(
+                p, state, model, rng, x, y, args.num_classes, is_training=False)[0]
 
-        loss_trace, distances, acceptance_probs = run_sgld(
-            subkey, loss_fn, sgld_config, params,
-            jnp.array(x_eval), jnp.array(y_eval),
-            itemp=itemp, trace_batch_loss=True,
-            compute_distance=False, compute_mala_acceptance=False,
-            verbose=False,
-        )
+            loss_trace, distances, acceptance_probs = run_sgld(
+                subkey, loss_fn, sgld_config, params,
+                jnp.array(x_eval), jnp.array(y_eval),
+                itemp=itemp, trace_batch_loss=True,
+                compute_distance=False, compute_mala_acceptance=False,
+                verbose=False,
+            )
 
-        init_loss = float(loss_fn(params, jnp.array(x_eval), jnp.array(y_eval)))
-        loss_trace_list = [float(l) for l in loss_trace]
-        mean_full = float(np.mean(loss_trace_list))
-        mean_last10pct = float(np.mean(loss_trace_list[int(len(loss_trace_list) * 0.9):]))
+            init_loss = float(loss_fn(params, jnp.array(x_eval), jnp.array(y_eval)))
+            loss_trace_list = [float(l) for l in loss_trace]
+
+            lam = compute_lambdahat(loss_trace_list, init_loss, n_data, itemp, burn_in_ratio=0.9)
+            lambdahats.append(lam)
+
+            chain_results.append({
+                "chain_id": chain_id,
+                "init_loss": init_loss,
+                "loss_trace": loss_trace_list,
+            })
+
+        valid_lambdahats = [l for l in lambdahats if not np.isnan(l)]
+        mean_llc = float(np.mean(valid_lambdahats)) if valid_lambdahats else float("nan")
+        std_llc  = float(np.std(valid_lambdahats)) if valid_lambdahats else float("nan")
 
         results.append({
             "step": step,
-            "init_loss": init_loss,
-            "loss_trace": loss_trace_list,
+            "mean_llc": mean_llc,
+            "std_llc": std_llc,
+            "n_valid_chains": len(valid_lambdahats),
+            "chains": chain_results,
         })
         print(
-            f"step={step:6d} | init_loss={init_loss:.4f} "
-            f"| mean(full)={mean_full:.4f} | mean(last10%)={mean_last10pct:.4f}"
+            f"step={step:6d} | mean_llc={mean_llc:.2f} | std_llc={std_llc:.2f} "
+            f"| valid_chains={len(valid_lambdahats)}/{args.num_chains}"
         )
 
     with open(out_path, "w") as f:
@@ -141,6 +175,7 @@ def main():
             "data_path": "cifar10_train",
             "stratified": args.stratified,
             "n_llc_samples_actual": n_data,
+            "num_chains": args.num_chains,
             "sgld_config": {
                 "epsilon": args.epsilon, "gamma": args.gamma,
                 "num_steps": args.sgld_num_steps, "batch_size": args.sgld_batch_size,
