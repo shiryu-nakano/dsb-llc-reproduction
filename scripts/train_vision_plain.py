@@ -79,7 +79,7 @@ def build_model(net_str: str, num_classes: int, image_size: int):
 
     raise ValueError(f"unknown net: {net_str}")
 
-
+_DATASET_ALIASES = {"cifar10": "uoft-cs/cifar10"}
 def main():
     p = ArgumentParser()
     p.add_argument("--dataset", default="cifar10")
@@ -93,7 +93,8 @@ def main():
     p.add_argument("--out", type=Path, default=Path("runs-plain"))
     args = p.parse_args()
 
-    ds = load_dataset(args.dataset)
+    #ds = load_dataset(args.dataset)
+    ds = load_dataset(_DATASET_ALIASES.get(args.dataset, args.dataset))
     img_key = "img" if "img" in ds["train"].column_names else "image"
     label_key = "label" if "label" in ds["train"].column_names else "fine_label"
     num_classes = ds["train"].features[label_key].num_classes
