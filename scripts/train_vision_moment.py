@@ -1,17 +1,23 @@
 # scripts/train_vision_moment.py
 """
 train_vision_plain.py をベースに、moment-edited data (grafting/deletion) での
-学習・505点密チェックポイント保存に対応させたスクリプト。
+学習・NFS保存・チェックポイント方式に対応させたスクリプト。
 
-変更点 (train_vision_plain.py からの差分):
+train_vision_plain.py からの変更点:
   1. データ読み込み: --data-family / --data-method / --data-root を指定すると
      実CIFAR-10の代わりに moment-edited train data (npz) を読み込む。
-     test set は常に実CIFAR-10 (Belrose et al. の設計: 編集データで学習し、
-     実データでの性能をprobeとして評価する)。
+     test set は常に実CIFAR-10 (Belrose et al. の設計:
+     編集データで学習し、実データでの汎化をprobeとして評価する)。
   2. チェックポイント保存: LogSpacedCheckpoint (幾何級数) をやめ、
-     dsb_dense と同じ 505点の手動 save_steps リストに合わせる。
-     (Callback は「次の目標stepに達したら保存」ではなく、
-      save_steps の集合に global_step が含まれるかで判定する形に変更)
+     0〜max_steps を等間隔 num_points 点 (デフォルト505) で保存する
+     ExplicitStepCheckpoint に変更。--save-steps-file で外部リストの指定も可能。
+  3. save_only_model=True: optimizer/scheduler stateを保存せず軽量化。
+  4. --out のデフォルトを NFS 上の絶対パス
+     (/home/nakano/server/checkpoints_dense/deletion_vision) に固定。
+     (~/cuda_test はローカルディスクで空き容量が少ないため、
+      チェックポイント保存には使わないこと)
+  5. --max-steps のデフォルトを 100000 に変更 (Belrose論文の65536ではなく、
+     本実験用の値として明示的に指定)。
 
 それ以外 (モデル定義, augmentation, optimizer 設定) は train_vision_plain.py と同一。
 """
@@ -37,10 +43,6 @@ from transformers.optimization import get_cosine_schedule_with_warmup
 
 _DATASET_ALIASES = {"cifar10": "uoft-cs/cifar10"}
 
-# dsb_dense と同じ505点の対数間隔 save_steps
-# (既存の dsb_dense checkpoints_dense/ 生成に使ったリストと同一のものをここに置く)
-DSB_DENSE_SAVE_STEPS_PATH = None  # 下のCLI引数で指定したファイルから読み込む
-
 
 class HfWrapper(nn.Module):
     """torchvision モデルの出力を HF Trainer が期待する形式に変換する。"""
@@ -58,11 +60,11 @@ class HfWrapper(nn.Module):
 
 
 # ─────────────────────────────────────────────
-# moment-edited data 用 Dataset (新規追加)
+# moment-edited data 用 Dataset
 # ─────────────────────────────────────────────
 class MomentEditedDataset(Dataset):
     """
-    deletion/grafting の npz を読み込み、HF Dataset ライクな
+    deletion/grafting の npz を読み込み、
     __getitem__(idx) -> {"img": PIL.Image, "label": int} を返す。
     train_vision_plain.py の collate() がそのまま使える形式に合わせている。
     """
@@ -119,11 +121,9 @@ class MomentEditedDataset(Dataset):
     def column_names(self):
         return ["img", "label"]
 
-    features = None  # HF dataset の .features を模倣する箇所は使わないため未実装
-
 
 # ─────────────────────────────────────────────
-# 505点 save_steps 対応チェックポイントコールバック (新規追加)
+# 等間隔 save_steps 対応チェックポイントコールバック
 # ─────────────────────────────────────────────
 @dataclass
 class ExplicitStepCheckpoint(TrainerCallback):
@@ -139,11 +139,10 @@ class ExplicitStepCheckpoint(TrainerCallback):
         return control
 
 
-def load_save_steps(path: Optional[str], max_steps: int) -> List[int]:
+def load_save_steps(path: Optional[str], max_steps: int, num_points: int = 505) -> List[int]:
     """
-    save_steps リストをファイル (改行区切り or JSON list) から読み込む。
-    指定がなければ dsb_dense と同じ fibonacci 的対数間隔リストを都度生成する
-    (簡易フォールバック。本番では dsb_dense 生成に使った実ファイルを指定すること)。
+    save_steps リストをファイルから読み込む。指定がなければ
+    0〜max_steps を等間隔 num_points 点で生成する。
     """
     if path is not None:
         p = Path(path)
@@ -153,14 +152,10 @@ def load_save_steps(path: Optional[str], max_steps: int) -> List[int]:
         else:
             steps = [int(x) for x in p.read_text().split() if x.strip()]
     else:
-        # フォールバック: 0から max_steps まで対数間隔で505点生成
-        steps = sorted(set(
-            int(x) for x in np.unique(
-                np.logspace(0, np.log10(max_steps), num=505)
-            )
-        ) | {0})
+        steps = sorted(set(int(x) for x in np.linspace(0, max_steps, num_points)))
     steps = sorted(s for s in set(steps) if s <= max_steps)
-    print(f"save_steps: {len(steps)} points, "
+    interval = steps[1] - steps[0] if len(steps) > 1 else None
+    print(f"save_steps: {len(steps)} points, interval≈{interval}, "
           f"range=[{steps[0]}, {steps[-1]}]")
     return steps
 
@@ -231,12 +226,13 @@ def main():
     p.add_argument("--dataset", default="cifar10")
     p.add_argument("--nets", nargs="+",
                    default=["convnext-atto", "regnet-400mf", "swin-atto"])
-    p.add_argument("--max-steps", type=int, default=65536)
+    p.add_argument("--max-steps", type=int, default=100000)
     p.add_argument("--batch-size", type=int, default=128)
     p.add_argument("--seed", type=int, default=0)
-    p.add_argument("--out", type=Path, default=Path("runs-moment"))
+    p.add_argument("--out", type=Path,
+                   default=Path("/home/nakano/server/checkpoints_dense/deletion_vision"))
 
-    # ── moment-edited data 設定 (新規) ──
+    # ── moment-edited data 設定 ──
     p.add_argument("--data-family", choices=["deletion", "grafting"], default=None,
                     help="指定しなければ実CIFAR-10で学習 (train_vision_plain.py と同じ挙動)")
     p.add_argument("--data-method", default=None,
@@ -244,10 +240,11 @@ def main():
                          "bounded_shift, cqn, gaussian_ot (grafting)")
     p.add_argument("--data-root", default="/home/nakano/server/moment_data")
 
-    # ── save_steps 設定 (新規) ──
+    # ── save_steps 設定 ──
     p.add_argument("--save-steps-file", default=None,
                     help="save_steps を記載したファイル (改行区切り整数 or JSON list)。"
-                         "dsb_dense生成時に使った実ファイルを指定すること。")
+                         "指定しなければ 0〜max_steps を等間隔505点で自動生成する。")
+    p.add_argument("--num-save-points", type=int, default=505)
 
     args = p.parse_args()
 
@@ -272,7 +269,7 @@ def main():
         image_size = ds["train"][0][img_key].size[0]
         run_name = "real"
 
-    # ── test set: 常に実CIFAR-10 (汎化probe用、train_and_save_moment.py と同じ設計) ──
+    # ── test set: 常に実CIFAR-10 (汎化probe用) ──
     real_ds = load_dataset(_DATASET_ALIASES.get(args.dataset, args.dataset))
     eval_dataset = real_ds["test"]
     eval_img_key = "img" if "img" in real_ds["test"].column_names else "image"
@@ -295,7 +292,7 @@ def main():
             }
         return fn
 
-    save_steps = load_save_steps(args.save_steps_file, args.max_steps)
+    save_steps = load_save_steps(args.save_steps_file, args.max_steps, args.num_save_points)
 
     for net_str in args.nets:
         model = build_model(net_str, num_classes, image_size)
@@ -313,7 +310,8 @@ def main():
             weight_decay=0.05,
             lr_scheduler_type="cosine",
             warmup_steps=0 if is_regnet else 2000,
-            save_strategy="no",   # コールバック駆動 (ExplicitStepCheckpoint)
+            save_strategy="no",       # コールバック駆動 (ExplicitStepCheckpoint)
+            save_only_model=True,     # optimizer/scheduler stateを保存せず軽量化
             save_total_limit=None,
             eval_strategy="no",
             logging_steps=100,
