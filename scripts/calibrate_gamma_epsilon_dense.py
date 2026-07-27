@@ -237,6 +237,7 @@ def main():
                     "flatness_score": flat_score,
                     "diverged": diverged,
                     "n_accept_prob_records": len(probs_only),
+                    "accept_probs_raw": [[int(t), float(p)] for t, p in acceptance_probs_raw],
                     "loss_trace": [float(l) for l in loss_trace],
                 }
 
