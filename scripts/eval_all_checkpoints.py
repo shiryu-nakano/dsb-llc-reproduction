@@ -1,28 +1,22 @@
-# scripts/eval_all_checkpoints.py
+# scripts/eval_all_checkpoints.py (拡張版)
 """
-deletion_vision 配下の全チェックポイントに対して、実CIFAR-10テストセットでの
-accuracyを一括評価し、JSONLに逐次保存する。
+deletion_vision 配下の全チェックポイントに対して、
+  - train_acc, train_loss : 学習に使った編集データ (moment-edited) 上での指標
+  - test_acc              : 実CIFAR-10テストセット上でのaccuracy (汎化probe)
+を一括評価し、JSONLに逐次保存する。
 
-高速化のポイント:
-  - テストセットは1回だけロードしGPU上に保持 (毎回のPIL変換/転送を排除)
-  - モデルは1回だけ構築し、state_dictだけ都度差し替え (from_pretrainedの
-    再構築・HF Hub通信コストを排除)
-  - JSONLに1件ずつ即書き込み + 既存分をスキップ (resume対応)
-
-使用例:
-  CUDA_VISIBLE_DEVICES=2 python3 eval_all_checkpoints.py \
-      --methods conrad gaussian \
-      --out /home/nakano/server/llc_results_dense/deletion_vision_acc_curve_gpu2.jsonl
-
-  CUDA_VISIBLE_DEVICES=3 python3 eval_all_checkpoints.py \
-      --methods ics truncated_normal \
-      --out /home/nakano/server/llc_results_dense/deletion_vision_acc_curve_gpu3.jsonl
+高速化・再開性は前バージョンと同じ方針:
+  - データは1回だけロードしGPU上に保持
+  - モデルは1回だけ構築し、state_dictだけ都度差し替え
+  - JSONLに1件ずつ即書き込み + resume対応
 """
 from argparse import ArgumentParser
 from pathlib import Path
 import json
 
+import numpy as np
 import torch
+import torch.nn.functional as F
 from safetensors.torch import load_file
 import torchvision.transforms as T
 from datasets import load_dataset
@@ -38,9 +32,52 @@ def build_convnext_atto(num_classes=10, image_size=32):
     return ConvNextV2ForImageClassification(cfg)
 
 
+def load_moment_train_data(data_root, method, device):
+    """train_vision_moment.py の MomentEditedDataset と同じロジックで
+    train data (編集データ) を読み込み、GPU上のtensorとして返す (augmentationなし)。"""
+    dir_path = Path(data_root) / "deletion" / method
+    npz_files = sorted(dir_path.glob("*.npz"))
+    assert len(npz_files) == 1
+    d = np.load(npz_files[0])
+
+    images = d["pixel_values"]
+    if images.dtype != np.uint8:
+        if images.max() <= 1.5:
+            images = (images * 255.0).clip(0, 255)
+        images = images.astype(np.uint8)
+
+    original_label = d["original_label"]
+    target_label = d["target_label"]
+    labels = original_label  # deletion系はoriginal_labelを使用 (train_vision_moment.pyと同じ)
+
+    imgs = torch.from_numpy(images).permute(0, 3, 1, 2).float() / 255.0
+    imgs = imgs.to(device)
+    labels = torch.from_numpy(labels).long().to(device)
+    return imgs, labels
+
+
+@torch.no_grad()
+def evaluate(model, imgs, labels, bs=1000, compute_loss=False):
+    correct, total, loss_sum = 0, 0, 0.0
+    for i in range(0, imgs.shape[0], bs):
+        out = model(pixel_values=imgs[i:i + bs])
+        logits = out.logits
+        preds = logits.argmax(dim=-1)
+        batch_labels = labels[i:i + bs]
+        correct += (preds == batch_labels).sum().item()
+        total += batch_labels.numel()
+        if compute_loss:
+            loss_sum += F.cross_entropy(
+                logits, batch_labels, reduction="sum").item()
+    acc = correct / total
+    loss = loss_sum / total if compute_loss else None
+    return acc, loss
+
+
 def main():
     p = ArgumentParser()
     p.add_argument("--base-dir", default="/home/nakano/server/checkpoints_dense/deletion_vision")
+    p.add_argument("--data-root", default="/home/nakano/server/moment_data")
     p.add_argument("--methods", nargs="+",
                     default=["conrad", "gaussian", "ics", "truncated_normal"])
     p.add_argument("--seeds", nargs="+", type=int, default=[42, 43, 44])
@@ -53,7 +90,6 @@ def main():
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # ── resume: 既に計算済みの (method, seed, step) を読み込む ──
     done = set()
     if out_path.exists():
         with open(out_path) as f:
@@ -62,24 +98,24 @@ def main():
                 done.add((r["method"], r["seed"], r["step"]))
         print(f"Resuming: {len(done)} already computed, skipping them")
 
-    # ── テストセットを1回だけロードしGPU上に保持 ──
+    # ── 実テストセット (1回だけロード, 全手法共通) ──
     real_ds = load_dataset("uoft-cs/cifar10")
     eval_ds = real_ds["test"]
     img_key = "img" if "img" in eval_ds.column_names else "image"
     label_key = "label" if "label" in eval_ds.column_names else "fine_label"
     tf = T.Compose([T.ToTensor()])
+    print("Preloading real test set onto GPU...")
+    test_imgs = torch.stack([tf(x.convert("RGB")) for x in eval_ds[img_key]]).to(device)
+    test_labels = torch.tensor(eval_ds[label_key]).to(device)
 
-    print("Preloading test set onto GPU...")
-    imgs = torch.stack([tf(x.convert("RGB")) for x in eval_ds[img_key]]).to(device)
-    labels = torch.tensor(eval_ds[label_key]).to(device)
-    print(f"  imgs={tuple(imgs.shape)}, labels={tuple(labels.shape)}")
-
-    # ── モデルは1回だけ構築 ──
-    assert args.net == "convnext-atto", "現状 convnext-atto のみ対応"
     model = build_convnext_atto().to(device).eval()
 
     f_out = open(out_path, "a")
     for method in args.methods:
+        # ── 編集データ (train, 手法ごとに異なる) は手法単位で1回だけロード ──
+        print(f"Loading moment-edited train data: {method}")
+        train_imgs, train_labels = load_moment_train_data(args.data_root, method, device)
+
         for seed in args.seeds:
             ckpt_root = Path(args.base_dir) / f"deletion_{method}" / args.net / f"seed{seed}"
             if not ckpt_root.exists():
@@ -98,21 +134,24 @@ def main():
                 state_dict = load_file(str(ckpt_dir / "model.safetensors"), device=device)
                 model.load_state_dict(state_dict)
 
-                correct, total = 0, 0
-                bs = 1000
-                with torch.no_grad():
-                    for i in range(0, imgs.shape[0], bs):
-                        out = model(pixel_values=imgs[i:i + bs])
-                        preds = out.logits.argmax(dim=-1)
-                        correct += (preds == labels[i:i + bs]).sum().item()
-                        total += labels[i:i + bs].numel()
-                acc = correct / total
+                train_acc, train_loss = evaluate(
+                    model, train_imgs, train_labels, compute_loss=True)
+                test_acc, _ = evaluate(
+                    model, test_imgs, test_labels, compute_loss=False)
 
-                rec = {"method": method, "seed": seed, "step": step, "test_acc": acc}
+                rec = {
+                    "method": method, "seed": seed, "step": step,
+                    "train_acc": train_acc, "train_loss": train_loss,
+                    "test_acc": test_acc,
+                }
                 f_out.write(json.dumps(rec) + "\n")
-                f_out.flush()  # 即座にディスクへ (中断への耐性)
+                f_out.flush()
 
             print(f"  done: {method} seed{seed}")
+
+        # 手法が変わったら不要になったtrain dataを解放
+        del train_imgs, train_labels
+        torch.cuda.empty_cache()
 
     f_out.close()
     print("All evaluations complete.")
