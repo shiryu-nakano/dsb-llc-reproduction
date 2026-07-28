@@ -4,10 +4,22 @@ devinterp (v1.3.2) を用いた PyTorch版 SGLD ハイパラキャリブレー�
 JAX版 calibrate_gamma_epsilon_dense.py と同じ設計思想:
   - gamma(localization) x epsilon(lr) のグリッドサーチ
   - MALA acceptance rate が 0.9〜0.95 になる組を探す
-  - loss trace の平坦性(post_burnin - init_loss)も併せて確認
+  - loss trace の平坦性(末尾10%)も併せて確認
 
 nbeta は devinterp の default_nbeta(batch_sizeベース)ではなく、
 JAX版と揃えるため n_train/log(n_train) を明示的に指定する。
+
+burn-in の切り方(devinterp標準の「先に捨てる」方式)ではなく、
+num_burnin_steps=0 として全ステップを draw 扱いにし、
+loss trace / MALA受理率トレース(共に全区間)をまるごと保存する。
+burn-inの境界は事後解析(JSON読み込み後)で自由に切れる。
+LLC自体もトレースさえあれば後から再計算できるので、result["llc/mean"]は
+参考値として保存するのみで、正式な採用値は事後解析で決める。
+
+注記: devinterp は multiprocessing で SGLD チェーンを実行するため、
+evaluate関数内でクロージャ経由の外部リストに追記しても
+メインプロセスには反映されない(別プロセスにcloudpickleでコピーされるため)。
+そのため loss の記録は devinterp 標準の result["loss/trace"] のみを信頼する。
 """
 import sys
 from pathlib import Path
@@ -49,8 +61,8 @@ def load_checkpoint_model(net_str, ckpt_dir, num_classes, image_size, device):
     return model.to(device)
 
 
-def flatness_score(loss_trace, tail_frac=0.1):
-    trace = np.array(loss_trace)
+def flatness_score(trace, tail_frac=0.1):
+    trace = np.array(trace)
     valid = trace[~np.isnan(trace) & ~np.isinf(trace)]
     if len(valid) < 10:
         return float("nan")
@@ -84,10 +96,12 @@ def main():
     p.add_argument("--steps", type=int, nargs="+", required=True)
     p.add_argument("--gammas", type=float, nargs="+", required=True)
     p.add_argument("--epsilons", type=float, nargs="+", required=True)
-    p.add_argument("--out-dir", type=Path, default=Path("/home/nakano/server/calibration_results_vision"))
+    p.add_argument("--out-dir", type=Path,
+                    default=Path("/home/nakano/server/calibration_results_vision"))
     p.add_argument("--num-classes", type=int, default=10)
     p.add_argument("--image-size", type=int, default=32)
-    p.add_argument("--sgld-num-draws", type=int, default=3000)
+    p.add_argument("--sgld-total-steps", type=int, default=3000,
+                    help="SGLDの総ステップ数。num_burnin_steps=0とし、全ステップをdrawとして扱う")
     p.add_argument("--sgld-batch-size", type=int, default=512)
     p.add_argument("--n-calibration-samples", type=int, default=50000)
     p.add_argument("--seed", type=int, default=42)
@@ -136,7 +150,7 @@ def main():
                 loader = DataLoader(dataset, batch_size=args.sgld_batch_size, shuffle=True)
 
                 mala_cb = MalaAcceptanceRate(
-                    num_chains=1, num_draws=args.sgld_num_draws,
+                    num_chains=1, num_draws=args.sgld_total_steps,
                     learning_rate=epsilon, nbeta=nbeta_val, device=device,
                 )
 
@@ -147,15 +161,18 @@ def main():
                     evaluate=evaluate_fn,
                     sampling_method=SGLD,
                     optimizer_kwargs=dict(lr=epsilon, localization=gamma, nbeta=nbeta_val),
-                    num_draws=args.sgld_num_draws,
+                    num_draws=args.sgld_total_steps,
+                    num_burnin_steps=0,
                     num_chains=1,
                     callbacks=[mala_cb],
                     device=device,
                     verbose=False,
                 )
 
-                loss_trace = result["loss/trace"][0]
-                mean_accept = mala_cb.get_results()["mala_accept/mean"]
+                loss_trace = result["loss/trace"][0].tolist()  # 全ステップ, devinterp集計(正)
+                mala_results = mala_cb.get_results()
+                mala_trace = mala_results["mala_accept/trace"][0].tolist()  # (total_steps-1,)
+                mean_accept = float(mala_results["mala_accept/mean"])
                 flat_score = flatness_score(loss_trace)
                 elapsed = time.time() - t0
 
@@ -164,19 +181,20 @@ def main():
                     "step": step,
                     "gamma": gamma,
                     "epsilon": epsilon,
-                    "llc_mean": float(result["llc/mean"]),
-                    "mean_accept_prob": float(mean_accept),
-                    "in_target_range_0.9_0.95": bool(0.9 <= mean_accept <= 0.95),
-                    "flatness_score": flat_score,
-                    "loss_trace": [float(l) for l in loss_trace],
+                    "nbeta": nbeta_val,
+                    "total_steps": args.sgld_total_steps,
+                    "llc_mean_devinterp_full_avg": float(result["llc/mean"]),  # 参考値(全区間平均、burn-in未除去)
+                    "mean_accept_prob_full": mean_accept,   # 全区間平均(参考値)
+                    "flatness_score_last10pct": flat_score,
+                    "loss_trace": loss_trace,                # 全ステップ
+                    "mala_accept_trace": mala_trace,          # 全ステップ-1、ステップごとの受理確率
                 }
                 existing["records"].append(record)
                 with open(out_path, "w") as f:
                     json.dump(existing, f)
 
-                status = "IN_RANGE" if record["in_target_range_0.9_0.95"] else "ok"
                 print(f"[{idx}/{total}] step={step:6d} gamma={gamma:5.1f} epsilon={epsilon:.1e} "
-                      f"| accept={mean_accept:.3f} | flat={flat_score:.5f} | {status} | {elapsed:.1f}s")
+                      f"| accept_full_avg={mean_accept:.3f} | flat={flat_score:.5f} | {elapsed:.1f}s")
 
                 del model
                 torch.cuda.empty_cache()
