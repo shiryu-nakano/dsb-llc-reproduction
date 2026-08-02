@@ -1,0 +1,22 @@
+nohup: ignoring input
+=== third_order generation: 10 classes over GPUs [4 5 6 7] ===
+n_steps=500 slice_size=16 coskew_batch=500
+  [class 0] launching on GPU 4 -> logs_third_order/class0.log
+  [class 1] launching on GPU 5 -> logs_third_order/class1.log
+  [class 2] launching on GPU 6 -> logs_third_order/class2.log
+  [class 3] launching on GPU 7 -> logs_third_order/class3.log
+  [class 4] waiting for class 0 (pid 69854) on same GPU 4 ...
+  [class 4] launching on GPU 4 -> logs_third_order/class4.log
+  [class 5] waiting for class 1 (pid 69855) on same GPU 5 ...
+  [class 5] launching on GPU 5 -> logs_third_order/class5.log
+  [class 6] waiting for class 2 (pid 69856) on same GPU 6 ...
+  [class 6] launching on GPU 6 -> logs_third_order/class6.log
+  [class 7] waiting for class 3 (pid 69857) on same GPU 7 ...
+  [class 7] launching on GPU 7 -> logs_third_order/class7.log
+  [class 8] waiting for class 4 (pid 71713) on same GPU 4 ...
+  [class 8] launching on GPU 4 -> logs_third_order/class8.log
+  [class 9] waiting for class 5 (pid 72059) on same GPU 5 ...
+  [class 9] launching on GPU 5 -> logs_third_order/class9.log
+=== waiting for remaining jobs ===
+=== all classes finished (check logs for per-class status) ===
+Next: run 'python combine_third_order.py' to merge into the final npz.

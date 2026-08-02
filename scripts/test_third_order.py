@@ -14,7 +14,7 @@ import numpy as np
 import torch
 
 from cifar10_loader import load_cifar10
-from deletion_third_order import third_order_sample
+from deletion_third_order_fast import third_order_sample
 
 
 def main():
@@ -37,7 +37,7 @@ def main():
     samples = third_order_sample(
         x_class, N_FAKE,
         n_steps=50,       # テスト用に少なめ
-        slice_size=4,     # スライスサイズも小さめ
+        slice_size=8,     # メモリ制御版スモーク
         device=device,
         verbose=True,
     )

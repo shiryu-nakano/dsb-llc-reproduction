@@ -1,0 +1,25 @@
+2026-07-31 02:50:17.742923: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-07-31 02:50:18.466291: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[class 2] === START 02:50:22 n_steps=500 coskew_batch=500 slice_size=16 ===
+[class 2] loading CIFAR-10 ...
+[class 2] data loaded in 1.7s
+[class 2] 5000 real samples, D=3072, device=cuda
+  [setup] N_real=5000 D=3072 n_fake=5000 coskew_batch=500 slice_size=16 num_slices=192 n_steps=500 device=cuda
+
+[class2]   [detail] step     0/500 means=0.000093 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 8.456s/step elapsed=0.1min | mem alloc=1.70GB reserved=3.55GB
+
+[class2]   [detail] step   100/500 means=0.000000 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 8.782s/step elapsed=14.8min | mem alloc=1.70GB reserved=4.15GB
+
+[class2]   [detail] step   200/500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 8.829s/step elapsed=29.5min | mem alloc=1.70GB reserved=4.15GB
+
+[class2]   [detail] step   300/500 means=0.000000 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 8.855s/step elapsed=44.3min | mem alloc=1.70GB reserved=4.15GB
+
+[class2]   [detail] step   400/500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 8.824s/step elapsed=59.0min | mem alloc=1.70GB reserved=4.15GB
+
+[class2]   [detail] step   499/500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 8.761s/step elapsed=73.6min | mem alloc=1.70GB reserved=4.15GB
+  [final full-fake subloss] means=0.000001 cov=0.000001 coskew=0.000000 bounds=0.000000 range=[-0.0000,1.0000]
+[class 2] optimization done in 4440.8s (74.0 min)
+[class 2] saved to /home/nakano/server/moment_data/deletion/third_order/_partial/class2.npz
+[class 2] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[class 2] === END 04:04:28 total_wall=4445.6s (74.1 min) ===

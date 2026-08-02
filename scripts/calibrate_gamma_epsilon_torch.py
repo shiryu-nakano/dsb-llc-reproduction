@@ -1,25 +1,21 @@
 # scripts/calibrate_gamma_epsilon_torch.py
 """
 devinterp (v1.3.2) を用いた PyTorch版 SGLD ハイパラキャリブレーション。
-JAX版 calibrate_gamma_epsilon_dense.py と同じ設計思想:
-  - gamma(localization) x epsilon(lr) のグリッドサーチ
-  - MALA acceptance rate が 0.9〜0.95 になる組を探す
-  - loss trace の平坦性(末尾10%)も併せて確認
 
-nbeta は devinterp の default_nbeta(batch_sizeベース)ではなく、
-JAX版と揃えるため n_train/log(n_train) を明示的に指定する。
+MALA受理率について:
+devinterp標準の MalaAcceptanceRate は毎drawごとに異なるミニバッチの
+loss同士を比較しており、ミニバッチノイズが受理率に混入する問題が判明した
+(JAX版 sgld_utils.py は同一バッチで前後比較していたが、devinterp版は違う)。
+FixedBatchMalaAcceptanceRate という自作コールバックで、固定バッチ上での
+比較(mean_accept_prob_fixedbatch)も同時に記録する。
 
-burn-in の切り方(devinterp標準の「先に捨てる」方式)ではなく、
-num_burnin_steps=0 として全ステップを draw 扱いにし、
-loss trace / MALA受理率トレース(共に全区間)をまるごと保存する。
-burn-inの境界は事後解析(JSON読み込み後)で自由に切れる。
-LLC自体もトレースさえあれば後から再計算できるので、result["llc/mean"]は
-参考値として保存するのみで、正式な採用値は事後解析で決める。
+weight distance について:
+WeightDistanceTracker (calibrate_gamma_epsilon_deletion.py と共通の実装)で
+||w_t - w*||_2 の推移を記録する。w* はサンプリング開始前にスナップショット
+したものを使う。distanceがどこかで頭打ちになるか、t^0.5型のまま伸び続けるか
+を見ることで、探索が有効曲率のスケールに達しているかを判断できる。
 
-注記: devinterp は multiprocessing で SGLD チェーンを実行するため、
-evaluate関数内でクロージャ経由の外部リストに追記しても
-メインプロセスには反映されない(別プロセスにcloudpickleでコピーされるため)。
-そのため loss の記録は devinterp 標準の result["loss/trace"] のみを信頼する。
+保存ファイルは step ごとに分ける(calib_{net}_step{step}.json)。
 """
 import sys
 from pathlib import Path
@@ -40,9 +36,66 @@ from safetensors.torch import load_file
 
 from devinterp.optim.sgld import SGLD
 from devinterp.slt.sampler import estimate_learning_coeff_with_summary
-from devinterp.slt.mala import MalaAcceptanceRate
+from devinterp.slt.mala import MalaAcceptanceRate, mala_acceptance_probability
+from devinterp.slt.callback import SamplerCallback
 
 from scripts.train_vision_plain import build_model
+from scripts.weight_distance_tracker import WeightDistanceTracker
+
+
+class FixedBatchMalaAcceptanceRate(SamplerCallback):
+    """
+    固定した1つの評価バッチを使い、check_everyステップごとに
+    (直前スナップショット時点のパラメータ) vs (現在のパラメータ)
+    を同一バッチ上で比較して受理確率を計算する(JAX版と同じロジック)。
+    まずは尤度項のみで近似(localization項は含めない)。
+    """
+
+    def __init__(self, fixed_batch, epsilon, nbeta, check_every=20, device="cuda"):
+        super().__init__(device=device)
+        self.fixed_x, self.fixed_y = fixed_batch
+        self.epsilon = epsilon
+        self.nbeta = nbeta
+        self.check_every = check_every
+        self.accept_probs = []
+        self._prev = None
+
+    def _evaluate_fixed_batch(self, model):
+        model.zero_grad()
+        out = model(pixel_values=self.fixed_x, labels=None)
+        logits = out.logits if hasattr(out, "logits") else out
+        loss = F.cross_entropy(logits, self.fixed_y)
+        mala_loss = loss.detach() * self.nbeta
+        loss.backward()
+
+        params = [p.detach().clone() for p in model.parameters() if p.requires_grad]
+        grads = [p.grad.detach().clone() * self.nbeta for p in model.parameters() if p.requires_grad]
+        model.zero_grad()
+        return params, grads, mala_loss
+
+    def __call__(self, i, model, **kwargs):
+        if i % self.check_every != 0:
+            return
+        with torch.enable_grad():
+            params, grads, mala_loss = self._evaluate_fixed_batch(model)
+            if self._prev is not None:
+                prev_params, prev_grads, prev_loss = self._prev
+                prob = mala_acceptance_probability(
+                    prev_params, prev_grads, prev_loss,
+                    params, grads, mala_loss,
+                    self.epsilon,
+                )
+                self.accept_probs.append([i, float(prob)])
+            self._prev = (params, grads, mala_loss)
+
+    def get_results(self):
+        return {
+            "fixed_batch_mala_accept/trace": self.accept_probs,
+            "fixed_batch_mala_accept/mean": (
+                sum(p for _, p in self.accept_probs) / len(self.accept_probs)
+                if self.accept_probs else float("nan")
+            ),
+        }
 
 
 def evaluate_fn(model, data):
@@ -100,18 +153,16 @@ def main():
                     default=Path("/home/nakano/server/calibration_results_vision"))
     p.add_argument("--num-classes", type=int, default=10)
     p.add_argument("--image-size", type=int, default=32)
-    p.add_argument("--sgld-total-steps", type=int, default=3000,
-                    help="SGLDの総ステップ数。num_burnin_steps=0とし、全ステップをdrawとして扱う")
+    p.add_argument("--sgld-total-steps", type=int, default=3000)
     p.add_argument("--sgld-batch-size", type=int, default=512)
     p.add_argument("--n-calibration-samples", type=int, default=50000)
+    p.add_argument("--mala-check-every", type=int, default=20,
+                    help="固定バッチMALA受理率を計算する間隔")
     p.add_argument("--seed", type=int, default=42)
     args = p.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     args.out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = args.out_dir / f"calib_{args.net}.json"
-    existing = load_existing(out_path)
-    print(f"Loaded {len(existing['records'])} existing records from {out_path}")
 
     from datasets import load_dataset
     import torchvision.transforms as T
@@ -127,6 +178,10 @@ def main():
     nbeta_val = n_calib / np.log(n_calib)
     print(f"Calibration data: n={n_calib}, nbeta={nbeta_val:.4f}")
 
+    # 固定評価バッチ(MALA受理率計算専用、SGLD本体とは別)
+    fixed_idx = torch.randperm(n_calib)[:args.sgld_batch_size]
+    fixed_batch = (x_all[fixed_idx].to(device), y_all[fixed_idx].to(device))
+
     total = len(args.steps) * len(args.gammas) * len(args.epsilons)
     idx = 0
 
@@ -135,6 +190,10 @@ def main():
         if not ckpt_dir.exists():
             print(f"WARNING: checkpoint step={step} not found, skipping.")
             continue
+
+        out_path = args.out_dir / f"calib_{args.net}_step{step}.json"
+        existing = load_existing(out_path)
+        print(f"[step={step}] Loaded {len(existing['records'])} existing records from {out_path}")
 
         for gamma in args.gammas:
             for epsilon in args.epsilons:
@@ -146,12 +205,25 @@ def main():
                 t0 = time.time()
                 model = load_checkpoint_model(args.net, ckpt_dir, args.num_classes, args.image_size, device)
 
+                # w* をサンプリング開始前にスナップショット
+                w_star = [
+                    p.clone().detach() for p in model.parameters() if p.requires_grad
+                ]
+
                 dataset = TensorDataset(x_all, y_all)
                 loader = DataLoader(dataset, batch_size=args.sgld_batch_size, shuffle=True)
 
                 mala_cb = MalaAcceptanceRate(
                     num_chains=1, num_draws=args.sgld_total_steps,
                     learning_rate=epsilon, nbeta=nbeta_val, device=device,
+                )
+                fixed_mala_cb = FixedBatchMalaAcceptanceRate(
+                    fixed_batch=fixed_batch, epsilon=epsilon, nbeta=nbeta_val,
+                    check_every=args.mala_check_every, device=device,
+                )
+                dist_cb = WeightDistanceTracker(
+                    num_chains=1, num_draws=args.sgld_total_steps,
+                    initial_params=w_star, device=device,
                 )
 
                 torch.manual_seed(args.seed)
@@ -164,16 +236,20 @@ def main():
                     num_draws=args.sgld_total_steps,
                     num_burnin_steps=0,
                     num_chains=1,
-                    callbacks=[mala_cb],
+                    callbacks=[mala_cb, fixed_mala_cb, dist_cb],
                     device=device,
                     verbose=False,
                 )
 
-                loss_trace = result["loss/trace"][0].tolist()  # 全ステップ, devinterp集計(正)
+                loss_trace = result["loss/trace"][0].tolist()
                 mala_results = mala_cb.get_results()
-                mala_trace = mala_results["mala_accept/trace"][0].tolist()  # (total_steps-1,)
+                mala_trace = mala_results["mala_accept/trace"][0].tolist()
                 mean_accept = float(mala_results["mala_accept/mean"])
                 flat_score = flatness_score(loss_trace)
+
+                fixed_mala_results = fixed_mala_cb.get_results()
+                dist_results = dist_cb.get_results()
+                dist_trace = dist_results["weight_distance/trace"][0].tolist()
                 elapsed = time.time() - t0
 
                 record = {
@@ -183,23 +259,28 @@ def main():
                     "epsilon": epsilon,
                     "nbeta": nbeta_val,
                     "total_steps": args.sgld_total_steps,
-                    "llc_mean_devinterp_full_avg": float(result["llc/mean"]),  # 参考値(全区間平均、burn-in未除去)
-                    "mean_accept_prob_full": mean_accept,   # 全区間平均(参考値)
+                    "llc_mean_devinterp_full_avg": float(result["llc/mean"]),
+                    "mean_accept_prob_full": mean_accept,
                     "flatness_score_last10pct": flat_score,
-                    "loss_trace": loss_trace,                # 全ステップ
-                    "mala_accept_trace": mala_trace,          # 全ステップ-1、ステップごとの受理確率
+                    "loss_trace": loss_trace,
+                    "mala_accept_trace": mala_trace,
+                    "fixed_batch_mala_accept_trace": fixed_mala_results["fixed_batch_mala_accept/trace"],
+                    "fixed_batch_mala_accept_mean": fixed_mala_results["fixed_batch_mala_accept/mean"],
+                    "weight_distance_trace": dist_trace,
+                    "weight_distance_final": dist_results["weight_distance/final"],
                 }
                 existing["records"].append(record)
                 with open(out_path, "w") as f:
                     json.dump(existing, f)
 
                 print(f"[{idx}/{total}] step={step:6d} gamma={gamma:5.1f} epsilon={epsilon:.1e} "
-                      f"| accept_full_avg={mean_accept:.3f} | flat={flat_score:.5f} | {elapsed:.1f}s")
+                      f"| accept_minibatch={mean_accept:.3f} | accept_fixedbatch={fixed_mala_results['fixed_batch_mala_accept/mean']:.3f} "
+                      f"| dist_final={dist_results['weight_distance/final']:.4e} | flat={flat_score:.5f} | {elapsed:.1f}s")
 
                 del model
                 torch.cuda.empty_cache()
 
-    print(f"\nAll done. Results saved to {out_path}")
+    print(f"\nAll done.")
 
 
 if __name__ == "__main__":
