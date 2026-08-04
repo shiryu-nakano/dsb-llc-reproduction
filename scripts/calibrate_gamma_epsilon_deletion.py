@@ -177,7 +177,7 @@ def main():
             print(f"WARNING: checkpoint step={step} not found ({ckpt_dir}), skipping.")
             continue
 
-        out_path = args.out_dir / f"calib_{args.net}_{args.data_family}_{args.data_method}_step{step}.json"
+        out_path = args.out_dir / f"calib_{args.net}_{args.data_family}_{args.data_method}_{args.run_dir.name}_step{step}.json"
         existing = load_existing(out_path)
         print(f"[step={step}] Loaded {len(existing['records'])} existing records from {out_path}")
 

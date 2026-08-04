@@ -32,7 +32,7 @@ from deletion_third_order_minibatch import third_order_sample
 # 他の4手法(conrad/gaussian/ics/truncated_normal)と同じ NFS 共有先に固定する。
 # __file__.parent.parent は ~/cuda_test/scripts/ の2つ上 = ~/cuda_test/ になって
 # しまい、意図した /home/nakano/server/moment_data/ とは別物になるため、絶対パスで書く。
-PARTIAL_DIR = Path("/home/nakano/server/moment_data/deletion/third_order/_partial")
+PARTIAL_DIR_DEFAULT = Path("/home/nakano/server/moment_data/deletion/third_order/_partial")
 
 
 def main():
@@ -47,8 +47,13 @@ def main():
     ap.add_argument("--device", type=str, default="cuda")
     ap.add_argument("--log_every", type=int, default=100)
     ap.add_argument("--force", action="store_true", help="既存の結果があっても上書き再計算する")
+    ap.add_argument("--out-dir", type=Path, default=None,
+                     help="保存先ディレクトリを上書き。指定しなければ本番用の"
+                          "_partial/ に保存する。近似なし版など、本番出力を"
+                          "上書きしたくない検証runではここを別ディレクトリに指定する。")
     args = ap.parse_args()
 
+    PARTIAL_DIR = args.out_dir if args.out_dir is not None else PARTIAL_DIR_DEFAULT
     PARTIAL_DIR.mkdir(parents=True, exist_ok=True)
     out_path = PARTIAL_DIR / f"class{args.class_id}.npz"
 

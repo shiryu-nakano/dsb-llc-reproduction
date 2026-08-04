@@ -1,0 +1,18 @@
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/slt/sampler.py:117: UserWarning: Using passed in nbeta. Make sure callbacks are also initialized with the same nbeta.
+  warnings.warn(
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py:241: UserWarning: You are taking more draws than burn-in steps, your LLC estimates will likely be underestimates. Please check LLC chain convergence.
+  warnings.warn(
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py:245: UserWarning: You are taking more sample batches than there are dataloader batches available, this removes some randomness from sampling but is probably fine. (All sample batches beyond the number dataloader batches are cycled from the start, f.e. 9 samples from [A, B, C] would be [B, A, C, B, A, C, B, A, C].)
+  warnings.warn(
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py:286: UserWarning: If you're setting a nbeta or temperature in optimizer_kwargs, please also make sure to set it in the callbacks.
+  warnings.warn(
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py:52: UserWarning: You are taking more sample batches than there are dataloader batches available, this removes some randomness from sampling but is probably fine. (All sample batches beyond the number dataloader batches are cycled from the start, f.e. 9 samples from [A, B, C] would be [B, A, C, B, A, C, B, A, C].)
+  warnings.warn(
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/slt/llc.py:109: UserWarning: std(): degrees of freedom is <= 0. Correction should be strictly less than the reduction factor (input numel divided by output numel). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/ReduceOps.cpp:1861.)
+  self.llc_std = self.llc_per_chain.std()
+Calibration data: family=deletion method=third_order_gram n=50000, nbeta=4621.1668
+[step=62000] Loaded 0 existing records from /home/nakano/server/calibration_results_deletion_vision_resnet_setting/calib_convnext-atto_deletion_third_order_gram_step62000.json
+DEBUG: optimizer localization = 1.0
+[1/1] step= 62000 gamma=  1.0 epsilon=2.0e-07 | accept_minibatch=0.517 | accept_fixedbatch=0.524 | flat=0.00018 | dist_final=7.3606e+01 | 8424.6s
+
+All done.

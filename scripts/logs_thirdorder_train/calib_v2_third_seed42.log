@@ -1,0 +1,103 @@
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/slt/sampler.py:117: UserWarning: Using passed in nbeta. Make sure callbacks are also initialized with the same nbeta.
+  warnings.warn(
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py:241: UserWarning: You are taking more draws than burn-in steps, your LLC estimates will likely be underestimates. Please check LLC chain convergence.
+  warnings.warn(
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py:245: UserWarning: You are taking more sample batches than there are dataloader batches available, this removes some randomness from sampling but is probably fine. (All sample batches beyond the number dataloader batches are cycled from the start, f.e. 9 samples from [A, B, C] would be [B, A, C, B, A, C, B, A, C].)
+  warnings.warn(
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py:286: UserWarning: If you're setting a nbeta or temperature in optimizer_kwargs, please also make sure to set it in the callbacks.
+  warnings.warn(
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py:52: UserWarning: You are taking more sample batches than there are dataloader batches available, this removes some randomness from sampling but is probably fine. (All sample batches beyond the number dataloader batches are cycled from the start, f.e. 9 samples from [A, B, C] would be [B, A, C, B, A, C, B, A, C].)
+  warnings.warn(
+[W804 13:13:42.874878023 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 1342177280 bytes (free: 257228800, total: 50899386368).
+[W804 13:13:42.875064702 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 1342177280 bytes (free: 257228800, total: 50899386368).
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/nakano/cuda_test/scripts/calibrate_gamma_epsilon_deletion.py", line 278, in <module>
+    main()
+  File "/home/nakano/cuda_test/scripts/calibrate_gamma_epsilon_deletion.py", line 218, in main
+    result = estimate_learning_coeff_with_summary(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/slt/sampler.py", line 164, in estimate_learning_coeff_with_summary
+    sample(
+  File "/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py", line 370, in sample
+    _sample_single_chain(get_args(i, seeds, device, callbacks, shared_kwargs))
+  File "/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py", line 148, in _sample_single_chain
+    return sample_single_chain(**kwargs, evaluate=evaluate, loader=loader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py", line 112, in sample_single_chain
+    results = evaluate(model, data)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/scripts/calibrate_gamma_epsilon_deletion.py", line 55, in evaluate_fn
+    out = model(pixel_values=x, labels=None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 911, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/models/convnextv2/modeling_convnextv2.py", line 345, in forward
+    outputs: BaseModelOutputWithPoolingAndNoAttention = self.convnextv2(pixel_values, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 911, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/models/convnextv2/modeling_convnextv2.py", line 296, in forward
+    encoder_outputs: BaseModelOutputWithNoAttention = self.encoder(embedding_output, **kwargs)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 1040, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 262, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/models/convnextv2/modeling_convnextv2.py", line 266, in forward
+    hidden_states = layer_module(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/models/convnextv2/modeling_convnextv2.py", line 209, in forward
+    features = layer(features)
+               ^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/models/convnextv2/modeling_convnextv2.py", line 167, in forward
+    features = self.grn(features)
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/transformers/models/convnextv2/modeling_convnextv2.py", line 51, in forward
+    hidden_states = self.weight * (hidden_states * norm_features) + self.bias + hidden_states
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.25 GiB. GPU 0 has a total capacity of 47.40 GiB of which 245.31 MiB is free. Process 150322 has 33.28 GiB memory in use. Including non-PyTorch memory, this process has 13.86 GiB memory in use. Of the allocated memory 12.34 GiB is allocated by PyTorch, and 1.21 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+Calibration data: family=deletion method=third_order_gram n=50000, nbeta=4621.1668
+[step=62000] Loaded 0 existing records from /home/nakano/server/calibration_results_deletion_vision_resnet_setting/calib_convnext-atto_deletion_third_order_gram_seed42_step62000.json
+DEBUG: optimizer localization = 1.0

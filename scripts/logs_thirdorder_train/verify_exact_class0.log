@@ -1,0 +1,27 @@
+nohup: ignoring input
+2026-08-03 01:01:43.641910: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-03 01:01:44.375692: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[class 0] === START 01:01:49 n_steps=1500 coskew_batch=5000 slice_size=16 ===
+[class 0] loading CIFAR-10 ...
+[class 0] data loaded in 1.8s
+[class 0] 5000 real samples, D=3072, device=cuda
+  [setup] N_real=5000 D=3072 n_fake=5000 coskew_batch=5000 slice_size=16 num_slices=192 n_steps=1500 device=cuda
+
+[class0]   [detail] step     0/1500 means=0.000077 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 64.154s/step elapsed=1.1min | mem alloc=1.68GB reserved=6.78GB
+
+[class0]   [detail] step   100/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 67.944s/step elapsed=114.3min | mem alloc=1.68GB reserved=6.78GB
+
+[class0]   [detail] step   200/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 67.971s/step elapsed=227.6min | mem alloc=1.68GB reserved=6.78GB
+
+[class0]   [detail] step   300/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 67.947s/step elapsed=340.8min | mem alloc=1.68GB reserved=6.78GB
+
+[class0]   [detail] step   400/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 67.911s/step elapsed=454.0min | mem alloc=1.68GB reserved=6.78GB
+
+[class0]   [detail] step   500/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 67.860s/step elapsed=567.1min | mem alloc=1.68GB reserved=6.78GB
+
+[class0]   [detail] step   600/1500 means=0.000000 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 67.909s/step elapsed=680.3min | mem alloc=1.68GB reserved=6.78GB
+
+[class0]   [detail] step   700/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 67.947s/step elapsed=793.6min | mem alloc=1.68GB reserved=6.78GB
+
+[class0]   [detail] step   800/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 67.850s/step elapsed=906.6min | mem alloc=1.68GB reserved=6.78GB

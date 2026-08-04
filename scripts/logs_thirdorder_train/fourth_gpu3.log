@@ -1,0 +1,36 @@
+2026-08-04 01:59:04.069205: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-04 01:59:04.800286: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[class 2] === START 01:59:09 n_steps=1500 coskew_weight=100.0 cokurt_weight=100.0 (Gram trick, no approx) ===
+[class 2] loading CIFAR-10 ...
+[class 2] data loaded in 1.9s
+[class 2] 5000 real samples, D=3072, device=cuda
+[class2] step     0/1500 means=0.00009259 cov=0.00000053 coskew=0.00097184 cokurt=0.00036287 bounds=0.00000000 elapsed=0.2s
+[class2] step   300/1500 means=0.00000266 cov=0.00000083 coskew=0.00003662 cokurt=0.00002706 bounds=0.00000084 elapsed=18.0s
+[class2] step   600/1500 means=0.00000249 cov=0.00000088 coskew=0.00002995 cokurt=0.00002107 bounds=0.00000018 elapsed=36.5s
+[class2] step   900/1500 means=0.00000237 cov=0.00000091 coskew=0.00002667 cokurt=0.00001786 bounds=0.00000013 elapsed=55.3s
+[class2] step  1200/1500 means=0.00000181 cov=0.00000093 coskew=0.00002453 cokurt=0.00001576 bounds=0.00000011 elapsed=74.2s
+[class2] step  1499/1500 means=0.00000068 cov=0.00000095 coskew=0.00002297 cokurt=0.00001422 bounds=0.00000011 elapsed=93.3s
+[class2] [final] coskew_weight=100.0 cokurt_weight=100.0  means=0.00000210 cov=0.00000095 coskew_norm=0.00002297 cokurt_norm=0.00001420 bounds=0.00000010 range=[-0.0305,1.0023]
+[class 2] optimization done in 95.2s (1.6 min)
+[class 2] saved to /home/nakano/server/moment_data/deletion/fourth_order_gram/_partial/class2.npz
+[class 2] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[class 2] === END 02:00:49 total_wall=100.2s (1.7 min) ===
+2026-08-04 02:00:51.578104: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-04 02:00:52.314696: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[class 6] === START 02:00:56 n_steps=1500 coskew_weight=100.0 cokurt_weight=100.0 (Gram trick, no approx) ===
+[class 6] loading CIFAR-10 ...
+[class 6] data loaded in 1.8s
+[class 6] 5000 real samples, D=3072, device=cuda
+[class6] step     0/1500 means=0.00012458 cov=0.00000064 coskew=0.00136555 cokurt=0.00045690 bounds=0.00000000 elapsed=0.2s
+[class6] step   300/1500 means=0.00000047 cov=0.00000122 coskew=0.00003798 cokurt=0.00002498 bounds=0.00000221 elapsed=18.8s
+[class6] step   600/1500 means=0.00000039 cov=0.00000128 coskew=0.00003133 cokurt=0.00001967 bounds=0.00000021 elapsed=38.1s
+[class6] step   900/1500 means=0.00000035 cov=0.00000132 coskew=0.00002812 cokurt=0.00001695 bounds=0.00000017 elapsed=57.6s
+[class6] step  1200/1500 means=0.00000039 cov=0.00000133 coskew=0.00002611 cokurt=0.00001510 bounds=0.00000015 elapsed=77.1s
+[class6] step  1499/1500 means=0.00000246 cov=0.00000132 coskew=0.00002451 cokurt=0.00001383 bounds=0.00000011 elapsed=96.7s
+[class6] [final] coskew_weight=100.0 cokurt_weight=100.0  means=0.00000031 cov=0.00000134 coskew_norm=0.00002450 cokurt_norm=0.00001379 bounds=0.00000016 range=[-0.0524,1.0357]
+[class 6] optimization done in 98.5s (1.6 min)
+[class 6] saved to /home/nakano/server/moment_data/deletion/fourth_order_gram/_partial/class6.npz
+[class 6] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[class 6] === END 02:02:39 total_wall=103.3s (1.7 min) ===

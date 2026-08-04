@@ -1,0 +1,6 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Preloading real test set onto GPU...
+Loading moment-edited train data: fourth_order_gram
+fourth_order_gram seed43: 500 checkpoints, 500 to do
+  done: fourth_order_gram seed43
+All evaluations complete.
