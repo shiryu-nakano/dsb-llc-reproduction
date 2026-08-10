@@ -1,0 +1,19 @@
+CMD: uv run python -m scripts.calibrate_gamma_epsilon_deletion --net convnext-atto --run-dir /home/nakano/server/checkpoints_dense/deletion_vision/deletion_second_order_gram/convnext-atto/seed42 --data-family deletion --data-method second_order_gram --steps 200 --gammas 1.0 --epsilons 2e-7 --sgld-total-steps 8000 --sgld-batch-size 2048 --n-calibration-samples 50000 --out-dir /home/nakano/server/calibration_results_deletion_vision_resnet_setting
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/nakano/cuda_test/scripts/calibrate_gamma_epsilon_deletion.py", line 278, in <module>
+    main()
+  File "/home/nakano/cuda_test/scripts/calibrate_gamma_epsilon_deletion.py", line 192, in main
+    model = load_checkpoint_model(args.net, ckpt_dir, args.num_classes, args.image_size, device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/scripts/calibrate_gamma_epsilon_deletion.py", line 65, in load_checkpoint_model
+    model.load_state_dict(state_dict)
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2638, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for ConvNextV2ForImageClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([1, 320]) from checkpoint, the shape in current model is torch.Size([10, 320]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([1]) from checkpoint, the shape in current model is torch.Size([10]).
+Calibration data: family=deletion method=second_order_gram n=5000, nbeta=587.0479
+[step=200] Loaded 0 existing records from /home/nakano/server/calibration_results_deletion_vision_resnet_setting/calib_convnext-atto_deletion_second_order_gram_seed42_step200.json

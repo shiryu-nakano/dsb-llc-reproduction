@@ -1,0 +1,13 @@
+WARNING:absl:Type handler registry overriding type "<class 'float'>" collision on scalar
+WARNING:absl:Type handler registry overriding type "<class 'bytes'>" collision on scalar
+WARNING:absl:Type handler registry overriding type "<class 'numpy.number'>" collision on scalar
+2026-08-04 20:43:33.272232: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/sacred/dependencies.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Loaded 0 existing records from /home/nakano/server/calibration_results_deletion_vision_resnet_setting/calib_seed42.json
+Loading CIFAR-10...
+Calibration data: n=50000, itemp=0.092423
+WARNING: checkpoint for step=62000 not found, skipping all patterns for this step.
+WARNING: checkpoint for step=100000 not found, skipping all patterns for this step.
+
+All done. Results saved to /home/nakano/server/calibration_results_deletion_vision_resnet_setting/calib_seed42.json

@@ -1,0 +1,95 @@
+nohup: ignoring input
+=== REAL MODE: 本番実行 ===
+
+===== Phase 1: データ生成(order1 on GPU0, order2 on GPU3, 並列) =====
+[21:36:53] START  gen_first_order_gram_class0 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class0.log
+[21:36:53] START  gen_second_order_gram_class0 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class0.log
+[21:37:14] OK  gen_first_order_gram_class0
+[21:37:14] START  gen_first_order_gram_class1 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class1.log
+[21:37:33] OK  gen_first_order_gram_class1
+[21:37:33] START  gen_first_order_gram_class2 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class2.log
+[21:37:35] OK  gen_second_order_gram_class0
+[21:37:35] START  gen_second_order_gram_class1 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class1.log
+[21:37:54] OK  gen_first_order_gram_class2
+[21:37:54] START  gen_first_order_gram_class3 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class3.log
+[21:38:15] OK  gen_first_order_gram_class3
+[21:38:15] START  gen_first_order_gram_class4 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class4.log
+[21:38:17] OK  gen_second_order_gram_class1
+[21:38:17] START  gen_second_order_gram_class2 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class2.log
+[21:38:36] OK  gen_first_order_gram_class4
+[21:38:36] START  gen_first_order_gram_class5 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class5.log
+[21:38:56] OK  gen_first_order_gram_class5
+[21:38:56] START  gen_first_order_gram_class6 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class6.log
+[21:39:00] OK  gen_second_order_gram_class2
+[21:39:00] START  gen_second_order_gram_class3 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class3.log
+[21:39:16] OK  gen_first_order_gram_class6
+[21:39:16] START  gen_first_order_gram_class7 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class7.log
+[21:39:35] OK  gen_first_order_gram_class7
+[21:39:35] START  gen_first_order_gram_class8 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class8.log
+[21:39:41] OK  gen_second_order_gram_class3
+[21:39:41] START  gen_second_order_gram_class4 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class4.log
+[21:39:55] OK  gen_first_order_gram_class8
+[21:39:55] START  gen_first_order_gram_class9 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_first_order_gram_class9.log
+[21:40:14] OK  gen_first_order_gram_class9
+[21:40:22] OK  gen_second_order_gram_class4
+[21:40:22] START  gen_second_order_gram_class5 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class5.log
+[21:41:04] OK  gen_second_order_gram_class5
+[21:41:04] START  gen_second_order_gram_class6 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class6.log
+[21:41:46] OK  gen_second_order_gram_class6
+[21:41:46] START  gen_second_order_gram_class7 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class7.log
+[21:42:27] OK  gen_second_order_gram_class7
+[21:42:27] START  gen_second_order_gram_class8 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class8.log
+[21:43:10] OK  gen_second_order_gram_class8
+[21:43:10] START  gen_second_order_gram_class9 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/gen_second_order_gram_class9.log
+[21:43:52] OK  gen_second_order_gram_class9
+両方の生成が完了。結合します。
+[21:43:52] START  combine_first_order_gram (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/combine_first_order_gram.log
+[21:44:47] OK  combine_first_order_gram
+[21:44:47] START  combine_second_order_gram (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/combine_second_order_gram.log
+[21:46:01] OK  combine_second_order_gram
+Phase 1 完了。180秒待機します。
+
+===== Phase 2: 学習(order1 on GPU0, order2 on GPU3, 並列) =====
+[21:49:01] START  train_first_order_gram_seed42 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/train_first_order_gram_seed42.log
+[21:49:01] START  train_second_order_gram_seed42 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/train_second_order_gram_seed42.log
+[23:09:57] OK  train_second_order_gram_seed42
+[23:10:24] OK  train_first_order_gram_seed42
+Phase 2 完了。180秒待機します。
+
+===== Phase 3: 評価(GPU6,7) + LLCキャリブレーション(GPU0,3,4,5) 並列 =====
+[23:13:24] START  calib_first_order_gram_seed42_step62000 (gpu=0)  -> /home/nakano/cuda_test/scripts/logs_order12/calib_first_order_gram_seed42_step62000.log
+[23:13:24] START  calib_first_order_gram_seed42_step100000 (gpu=3)  -> /home/nakano/cuda_test/scripts/logs_order12/calib_first_order_gram_seed42_step100000.log
+[23:13:24] START  calib_second_order_gram_seed42_step62000 (gpu=4)  -> /home/nakano/cuda_test/scripts/logs_order12/calib_second_order_gram_seed42_step62000.log
+[23:13:24] START  calib_second_order_gram_seed42_step100000 (gpu=5)  -> /home/nakano/cuda_test/scripts/logs_order12/calib_second_order_gram_seed42_step100000.log
+[23:13:24] START  eval_first_order_gram_seed42 (gpu=6)  -> /home/nakano/cuda_test/scripts/logs_order12/eval_first_order_gram_seed42.log
+[23:13:24] START  eval_second_order_gram_seed42 (gpu=7)  -> /home/nakano/cuda_test/scripts/logs_order12/eval_second_order_gram_seed42.log
+[23:14:05] FAILED(rc=1)  eval_second_order_gram_seed42
+[23:14:06] FAILED(rc=1)  eval_first_order_gram_seed42
+[01:34:02] OK  calib_first_order_gram_seed42_step62000
+[01:34:11] OK  calib_second_order_gram_seed42_step62000
+[01:34:38] OK  calib_second_order_gram_seed42_step100000
+[01:34:42] OK  calib_first_order_gram_seed42_step100000
+Traceback (most recent call last):
+  File "/home/nakano/cuda_test/scripts/pipeline_order12.py", line 254, in <module>
+    main()
+  File "/home/nakano/cuda_test/scripts/pipeline_order12.py", line 247, in main
+    phase3_eval_and_calibrate(final_step)
+  File "/home/nakano/cuda_test/scripts/pipeline_order12.py", line 197, in phase3_eval_and_calibrate
+    run_parallel(jobs)
+  File "/home/nakano/cuda_test/scripts/pipeline_order12.py", line 77, in run_parallel
+    results = [f.result() for f in futures]
+               ^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/scripts/pipeline_order12.py", line 160, in eval_order
+    return run(cmd, gpu, f"eval_{method}_seed42", cwd=str(SCRIPTS_DIR))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nakano/cuda_test/scripts/pipeline_order12.py", line 69, in run
+    raise RuntimeError(f"{logname} failed (see {lp})")
+RuntimeError: eval_first_order_gram_seed42 failed (see /home/nakano/cuda_test/scripts/logs_order12/eval_first_order_gram_seed42.log)

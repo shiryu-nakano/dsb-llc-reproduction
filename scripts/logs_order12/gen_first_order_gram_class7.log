@@ -1,0 +1,19 @@
+CMD: /home/nakano/cuda_test/.venv/bin/python /home/nakano/cuda_test/scripts/run_order_one_class_gram.py --order 1 --class_id 7 --n_steps 1500 --force
+
+2026-08-04 21:39:16.729374: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-04 21:39:17.461065: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_gram class 7] === START 21:39:21 n_steps=1500 order=1 (Gram trick, gradient-based) ===
+[first_order_gram class 7] data loaded in 1.8s
+[first_order_gram class 7] 5000 real samples, D=3072, device=cuda
+[first_order_gram_class7] step     0/1500 order=1 means=0.00007580 cov=0.00000000 bounds=0.00000000 elapsed=0.2s
+[first_order_gram_class7] step   300/1500 order=1 means=0.00000050 cov=0.00000000 bounds=0.00000000 elapsed=1.5s
+[first_order_gram_class7] step   600/1500 order=1 means=0.00000084 cov=0.00000000 bounds=0.00000000 elapsed=2.8s
+[first_order_gram_class7] step   900/1500 order=1 means=0.00000089 cov=0.00000000 bounds=0.00000000 elapsed=4.2s
+[first_order_gram_class7] step  1200/1500 order=1 means=0.00000067 cov=0.00000000 bounds=0.00000000 elapsed=5.5s
+[first_order_gram_class7] step  1499/1500 order=1 means=0.00000070 cov=0.00000000 bounds=0.00000000 elapsed=6.9s
+[first_order_gram_class7] [final] order=1 means=0.00000081 cov=N/A bounds=0.00000000 range=[0.0000,1.0000]
+[first_order_gram class 7] optimization done in 7.9s (0.1 min)
+[first_order_gram class 7] saved to /home/nakano/server/moment_data/deletion/first_order_gram/_partial/class7.npz
+[first_order_gram class 7] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_gram class 7] === END 21:39:34 total_wall=12.9s (0.2 min) ===

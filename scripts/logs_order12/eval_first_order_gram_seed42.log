@@ -1,0 +1,17 @@
+CMD: /home/nakano/cuda_test/.venv/bin/python /home/nakano/cuda_test/scripts/eval_full_curve.py --methods first_order_gram --net convnext-atto --seeds 42 --out /home/nakano/server/llc_results_dense/deletion_vision_first_order_gram_convnext_seed42.jsonl
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Resuming: 0 already computed, skipping them
+Preloading real test set onto GPU...
+Loading moment-edited train data: first_order_gram
+first_order_gram seed42: 699 checkpoints, 699 to do
+Traceback (most recent call last):
+  File "/home/nakano/cuda_test/scripts/eval_full_curve.py", line 153, in <module>
+    main()
+  File "/home/nakano/cuda_test/scripts/eval_full_curve.py", line 130, in main
+    model.load_state_dict(state_dict)
+  File "/home/nakano/cuda_test/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2638, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for ConvNextV2ForImageClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([1, 320]) from checkpoint, the shape in current model is torch.Size([10, 320]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([1]) from checkpoint, the shape in current model is torch.Size([10]).

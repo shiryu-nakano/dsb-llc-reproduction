@@ -1,0 +1,22 @@
+CMD: /home/nakano/cuda_test/.venv/bin/python /home/nakano/cuda_test/scripts/run_order_one_class_gram.py --order 2 --class_id 8 --n_steps 1500 --force
+
+2026-08-04 21:42:28.206153: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-04 21:42:28.939966: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/home/nakano/cuda_test/scripts/deletion_first_second_order_gram.py:104: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  f"means={means_loss.item():.8f} cov={float(cov_loss):.8f} "
+[second_order_gram class 8] === START 21:42:32 n_steps=1500 order=2 (Gram trick, gradient-based) ===
+[second_order_gram class 8] data loaded in 1.8s
+[second_order_gram class 8] 5000 real samples, D=3072, device=cuda
+[second_order_gram_class8] step     0/1500 order=2 means=0.00005629 cov=0.00000068 bounds=0.00000000 elapsed=0.2s
+[second_order_gram_class8] step   300/1500 order=2 means=0.00000057 cov=0.00000078 bounds=0.00000000 elapsed=5.5s
+[second_order_gram_class8] step   600/1500 order=2 means=0.00000054 cov=0.00000073 bounds=0.00000000 elapsed=11.3s
+[second_order_gram_class8] step   900/1500 order=2 means=0.00000106 cov=0.00000066 bounds=0.00000000 elapsed=17.0s
+[second_order_gram_class8] step  1200/1500 order=2 means=0.00000068 cov=0.00000059 bounds=0.00000000 elapsed=22.8s
+[second_order_gram_class8] step  1499/1500 order=2 means=0.00000064 cov=0.00000052 bounds=0.00000000 elapsed=28.5s
+[second_order_gram_class8] [final] order=2 means=0.00000148 cov=5.168544134903641e-07 bounds=0.00000000 range=[-0.0001,1.0002]
+[second_order_gram class 8] optimization done in 30.1s (0.5 min)
+[second_order_gram class 8] saved to /home/nakano/server/moment_data/deletion/second_order_gram/_partial/class8.npz
+[second_order_gram class 8] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[second_order_gram class 8] === END 21:43:09 total_wall=36.5s (0.6 min) ===

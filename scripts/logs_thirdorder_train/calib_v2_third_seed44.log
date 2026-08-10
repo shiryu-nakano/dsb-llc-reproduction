@@ -8,17 +8,15 @@
   warnings.warn(
 /home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py:52: UserWarning: You are taking more sample batches than there are dataloader batches available, this removes some randomness from sampling but is probably fine. (All sample batches beyond the number dataloader batches are cycled from the start, f.e. 9 samples from [A, B, C] would be [B, A, C, B, A, C, B, A, C].)
   warnings.warn(
-[W804 13:13:42.605573663 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 1342177280 bytes (free: 257228800, total: 50899386368).
-[W804 13:13:42.605752162 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 1342177280 bytes (free: 257228800, total: 50899386368).
-Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/home/nakano/cuda_test/scripts/calibrate_gamma_epsilon_deletion.py", line 278, in <module>
-    main()
-  File "/home/nakano/cuda_test/scripts/calibrate_gamma_epsilon_deletion.py", line 218, in main
-    result = estimate_learning_coeff_with_summary(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/slt/sampler.py", line 164, in estimate_learning_coeff_with_summary
+/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/slt/llc.py:109: UserWarning: std(): degrees of freedom is <= 0. Correction should be strictly less than the reduction factor (input numel divided by output numel). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/ReduceOps.cpp:1861.)
+  self.llc_std = self.llc_per_chain.std()
+Calibration data: family=deletion method=third_order_gram n=50000, nbeta=4621.1668
+[step=62000] Loaded 0 existing records from /home/nakano/server/calibration_results_deletion_vision_resnet_setting/calib_convnext-atto_deletion_third_order_gram_seed44_step62000.json
+DEBUG: optimizer localization = 1.0
+[1/1] step= 62000 gamma=  1.0 epsilon=2.0e-07 | accept_minibatch=0.517 | accept_fixedbatch=0.510 | flat=0.00018 | dist_final=7.3606e+01 | 8451.0s
+
+All done.
+home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/slt/sampler.py", line 164, in estimate_learning_coeff_with_summary
     sample(
   File "/home/nakano/src/github.com/timaeus-research/devinterp/src/devinterp/backends/default/slt/sampler.py", line 370, in sample
     _sample_single_chain(get_args(i, seeds, device, callbacks, shared_kwargs))
