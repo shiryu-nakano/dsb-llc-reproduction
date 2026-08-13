@@ -1,0 +1,20 @@
+2026-08-13 09:30:27.189018: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 09:30:27.925729: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 09:30:29.896134: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[class 9] === START 09:30:31 n_steps=1500 coskew_batch=5000 slice_size=16 ===
+[class 9] loading CIFAR-10 ...
+[class 9] data loaded in 1.7s
+[class 9] 5000 real samples, D=3072, device=cuda
+  [setup] N_real=5000 D=3072 n_fake=5000 coskew_batch=5000 slice_size=16 num_slices=192 n_steps=1500 device=cuda
+
+[class9]   [detail] step     0/1500 means=0.000115 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.604s/step elapsed=1.1min | mem alloc=1.68GB reserved=6.90GB
+
+[class9]   [detail] step   100/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.490s/step elapsed=111.9min | mem alloc=1.68GB reserved=6.90GB
+
+[class9]   [detail] step   200/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.488s/step elapsed=222.7min | mem alloc=1.68GB reserved=6.90GB
+
+[class9]   [detail] step   300/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.494s/step elapsed=333.6min | mem alloc=1.68GB reserved=6.90GB
+
+[class9]   [detail] step   400/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.498s/step elapsed=444.4min | mem alloc=1.68GB reserved=6.90GB

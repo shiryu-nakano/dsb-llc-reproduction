@@ -1,0 +1,10 @@
+2026-08-13 17:59:56.118311: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 17:59:56.877394: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 17:59:58.854076: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[fourth_order_koleo class 0] === START 18:00:00 order=4 entropy=True n_steps=1500 ===
+[fourth_order_koleo class 0] data loaded in 1.6s
+[fourth_order_koleo class 0] 5000 real samples, D=3072, device=cuda
+[fourth_order_koleo_class0] step     0/1500 order=4 loss=0.125818 means=0.00008111 cov=0.00000082 m3=0.000854 m4=0.000427 koleo=2.3223 elapsed=0.3s
+[fourth_order_koleo_class0] step   300/1500 order=4 loss=0.010618 means=0.00012059 cov=0.00000061 m3=0.000071 m4=0.000057 koleo=2.3285 elapsed=40.2s

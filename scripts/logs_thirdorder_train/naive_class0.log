@@ -1,0 +1,47 @@
+2026-08-11 02:15:25.595203: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-11 02:15:26.324515: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-11 02:15:28.291016: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[class 0] === START 02:15:30 n_steps=1500 coskew_batch=5000 slice_size=16 ===
+[class 0] loading CIFAR-10 ...
+[class 0] data loaded in 1.6s
+[class 0] 5000 real samples, D=3072, device=cuda
+  [setup] N_real=5000 D=3072 n_fake=5000 coskew_batch=5000 slice_size=16 num_slices=192 n_steps=1500 device=cuda
+
+[class0]   [detail] step     0/1500 means=0.000081 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.628s/step elapsed=1.1min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step   100/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.721s/step elapsed=112.3min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step   200/1500 means=0.000000 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.710s/step elapsed=223.5min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step   300/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.720s/step elapsed=334.7min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step   400/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.691s/step elapsed=445.8min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step   500/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.636s/step elapsed=556.9min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step   600/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.661s/step elapsed=668.0min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step   700/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.694s/step elapsed=779.2min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step   800/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.597s/step elapsed=890.2min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step   900/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.649s/step elapsed=1001.2min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step  1000/1500 means=0.000000 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.702s/step elapsed=1112.4min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step  1100/1500 means=0.000000 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.707s/step elapsed=1223.6min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step  1200/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.692s/step elapsed=1334.7min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step  1300/1500 means=0.000000 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.708s/step elapsed=1445.9min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step  1400/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.753s/step elapsed=1557.2min | mem alloc=1.68GB reserved=6.90GB
+
+[class0]   [detail] step  1499/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.049s/step elapsed=1667.3min | mem alloc=1.68GB reserved=6.90GB
+  [final full-fake subloss] means=0.000001 cov=0.000001 coskew=0.000000 bounds=0.000000 range=[-0.0000,1.0001]
+[class 0] optimization done in 100069.0s (1667.8 min)
+[class 0] saved to /home/nakano/server/moment_data/deletion/third_order_naive/_partial/class0.npz
+[class 0] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[class 0] === END 06:03:26 total_wall=100076.0s (1667.9 min) ===
