@@ -7,3 +7,184 @@ Skipping registering GPU devices...
 [sixth_order_koleo class 0] data loaded in 1.5s
 [sixth_order_koleo class 0] 5000 real samples, D=3072, device=cuda
 [sixth_order_koleo_class0] step     0/1500 order=6 loss=0.142913 means=0.00008111 cov=0.00000082 m3=0.000854 m4=0.000427 m5=0.000102 m6=0.000069 koleo=2.3223 elapsed=0.4s
+[sixth_order_koleo_class0] step   300/1500 order=6 loss=0.014642 means=0.00014042 cov=0.00000037 m3=0.000072 m4=0.000057 m5=0.000026 m6=0.000013 koleo=2.3313 elapsed=66.5s
+[sixth_order_koleo_class0] step   600/1500 order=6 loss=0.009980 means=0.00008577 cov=0.00000033 m3=0.000049 m4=0.000042 m5=0.000021 m6=0.000010 koleo=2.3502 elapsed=132.9s
+[sixth_order_koleo_class0] step   900/1500 order=6 loss=0.007986 means=0.00003485 cov=0.00000031 m3=0.000041 m4=0.000036 m5=0.000018 m6=0.000009 koleo=2.3592 elapsed=199.3s
+[sixth_order_koleo_class0] step  1200/1500 order=6 loss=0.006809 means=0.00000009 cov=0.00000030 m3=0.000036 m4=0.000032 m5=0.000016 m6=0.000008 koleo=2.3640 elapsed=265.7s
+[sixth_order_koleo_class0] step  1499/1500 order=6 loss=0.006026 means=0.00000003 cov=0.00000028 m3=0.000033 m4=0.000029 m5=0.000014 m6=0.000007 koleo=2.3651 elapsed=331.9s
+[sixth_order_koleo_class0] [final] order=6 use_entropy=True means=0.00000002 cov=2.8181165134810726e-07 moments={3: 3.3257785126550155e-05, 4: 2.930124497248067e-05, 5: 1.4400426590820171e-05, 6: 6.937101177215852e-06} koleo=2.3651 range=[0.0000,1.0000]
+[sixth_order_koleo class 0] optimization done in 333.7s (5.6 min)
+[sixth_order_koleo class 0] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class0.npz
+[sixth_order_koleo class 0] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 0] === END 18:05:41 total_wall=340.8s (5.7 min) ===
+2026-08-13 18:05:43.699383: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:05:44.425975: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 18:05:46.371769: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[sixth_order_koleo class 1] === START 18:05:48 order=6 entropy=True n_steps=1500 ===
+[sixth_order_koleo class 1] data loaded in 1.6s
+[sixth_order_koleo class 1] 5000 real samples, D=3072, device=cuda
+[sixth_order_koleo_class1] step     0/1500 order=6 loss=0.217124 means=0.00009386 cov=0.00000104 m3=0.001450 m4=0.000490 m5=0.000186 m6=0.000069 koleo=2.4893 elapsed=0.4s
+[sixth_order_koleo_class1] step   300/1500 order=6 loss=0.021802 means=0.00036313 cov=0.00000072 m3=0.000115 m4=0.000072 m5=0.000033 m6=0.000019 koleo=2.4485 elapsed=66.5s
+[sixth_order_koleo_class1] step   600/1500 order=6 loss=0.015748 means=0.00034678 cov=0.00000049 m3=0.000081 m4=0.000058 m5=0.000025 m6=0.000013 koleo=2.4600 elapsed=132.8s
+[sixth_order_koleo_class1] step   900/1500 order=6 loss=0.013235 means=0.00031419 cov=0.00000037 m3=0.000069 m4=0.000052 m5=0.000023 m6=0.000011 koleo=2.4732 elapsed=199.2s
+[sixth_order_koleo_class1] step  1200/1500 order=6 loss=0.011789 means=0.00027721 cov=0.00000032 m3=0.000062 m4=0.000048 m5=0.000021 m6=0.000009 koleo=2.4830 elapsed=265.6s
+[sixth_order_koleo_class1] step  1499/1500 order=6 loss=0.010815 means=0.00023995 cov=0.00000029 m3=0.000057 m4=0.000045 m5=0.000020 m6=0.000009 koleo=2.4888 elapsed=331.7s
+[sixth_order_koleo_class1] [final] order=6 use_entropy=True means=0.00023983 cov=2.8742633162437414e-07 moments={3: 5.742965004279694e-05, 4: 4.495064301105837e-05, 5: 1.9660309813122715e-05, 6: 8.586847494977215e-06} koleo=2.4888 range=[0.0000,1.0000]
+[sixth_order_koleo class 1] optimization done in 333.6s (5.6 min)
+[sixth_order_koleo class 1] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class1.npz
+[sixth_order_koleo class 1] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 1] === END 18:11:28 total_wall=340.6s (5.7 min) ===
+2026-08-13 18:11:30.922895: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:11:31.645321: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 18:11:33.598584: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[sixth_order_koleo class 2] === START 18:11:35 order=6 entropy=True n_steps=1500 ===
+[sixth_order_koleo class 2] data loaded in 1.6s
+[sixth_order_koleo class 2] 5000 real samples, D=3072, device=cuda
+[sixth_order_koleo_class2] step     0/1500 order=6 loss=0.153089 means=0.00008858 cov=0.00000051 m3=0.000983 m4=0.000353 m5=0.000156 m6=0.000061 koleo=2.2950 elapsed=0.4s
+[sixth_order_koleo_class2] step   300/1500 order=6 loss=0.013333 means=0.00024125 cov=0.00000042 m3=0.000065 m4=0.000051 m5=0.000024 m6=0.000014 koleo=2.2949 elapsed=66.5s
+[sixth_order_koleo_class2] step   600/1500 order=6 loss=0.008970 means=0.00020117 cov=0.00000034 m3=0.000046 m4=0.000038 m5=0.000018 m6=0.000009 koleo=2.3172 elapsed=132.9s
+[sixth_order_koleo_class2] step   900/1500 order=6 loss=0.007077 means=0.00015348 cov=0.00000031 m3=0.000038 m4=0.000032 m5=0.000015 m6=0.000008 koleo=2.3313 elapsed=199.3s
+[sixth_order_koleo_class2] step  1200/1500 order=6 loss=0.005940 means=0.00010444 cov=0.00000030 m3=0.000033 m4=0.000028 m5=0.000014 m6=0.000007 koleo=2.3393 elapsed=265.7s
+[sixth_order_koleo_class2] step  1499/1500 order=6 loss=0.005148 means=0.00005692 cov=0.00000028 m3=0.000030 m4=0.000026 m5=0.000012 m6=0.000006 koleo=2.3431 elapsed=331.9s
+[sixth_order_koleo_class2] [final] order=6 use_entropy=True means=0.00005676 cov=2.8108465244258696e-07 moments={3: 3.0244826086829507e-05, 4: 2.583431584450106e-05, 5: 1.2310058798466192e-05, 6: 5.952865682990739e-06} koleo=2.3431 range=[0.0000,1.0000]
+[sixth_order_koleo class 2] optimization done in 333.7s (5.6 min)
+[sixth_order_koleo class 2] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class2.npz
+[sixth_order_koleo class 2] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 2] === END 18:17:16 total_wall=340.9s (5.7 min) ===
+2026-08-13 18:17:18.459632: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:17:19.167772: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 18:17:21.086773: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[sixth_order_koleo class 3] === START 18:17:22 order=6 entropy=True n_steps=1500 ===
+[sixth_order_koleo class 3] data loaded in 1.6s
+[sixth_order_koleo class 3] 5000 real samples, D=3072, device=cuda
+[sixth_order_koleo_class3] step     0/1500 order=6 loss=0.153598 means=0.00010706 cov=0.00000082 m3=0.000936 m4=0.000412 m5=0.000148 m6=0.000062 koleo=2.4115 elapsed=0.4s
+[sixth_order_koleo_class3] step   300/1500 order=6 loss=0.016543 means=0.00020782 cov=0.00000043 m3=0.000080 m4=0.000064 m5=0.000028 m6=0.000014 koleo=2.3952 elapsed=66.5s
+[sixth_order_koleo_class3] step   600/1500 order=6 loss=0.012037 means=0.00017064 cov=0.00000033 m3=0.000057 m4=0.000051 m5=0.000024 m6=0.000011 koleo=2.4207 elapsed=132.9s
+[sixth_order_koleo_class3] step   900/1500 order=6 loss=0.010047 means=0.00012909 cov=0.00000029 m3=0.000048 m4=0.000044 m5=0.000021 m6=0.000010 koleo=2.4387 elapsed=199.3s
+[sixth_order_koleo_class3] step  1200/1500 order=6 loss=0.008850 means=0.00008776 cov=0.00000027 m3=0.000043 m4=0.000040 m5=0.000020 m6=0.000009 koleo=2.4505 elapsed=265.8s
+[sixth_order_koleo_class3] step  1499/1500 order=6 loss=0.008021 means=0.00004824 cov=0.00000026 m3=0.000040 m4=0.000038 m5=0.000018 m6=0.000008 koleo=2.4574 elapsed=332.0s
+[sixth_order_koleo_class3] [final] order=6 use_entropy=True means=0.00004811 cov=2.5682030013740587e-07 moments={3: 4.000467120376135e-05, 4: 3.770048755945431e-05, 5: 1.837578716613262e-05, 6: 8.191793717236982e-06} koleo=2.4574 range=[0.0000,1.0000]
+[sixth_order_koleo class 3] optimization done in 333.8s (5.6 min)
+[sixth_order_koleo class 3] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class3.npz
+[sixth_order_koleo class 3] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 3] === END 18:23:03 total_wall=340.8s (5.7 min) ===
+2026-08-13 18:23:05.918906: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:23:06.642037: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 18:23:08.605279: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[sixth_order_koleo class 4] === START 18:23:10 order=6 entropy=True n_steps=1500 ===
+[sixth_order_koleo class 4] data loaded in 1.7s
+[sixth_order_koleo class 4] 5000 real samples, D=3072, device=cuda
+[sixth_order_koleo_class4] step     0/1500 order=6 loss=0.097942 means=0.00009424 cov=0.00000034 m3=0.000655 m4=0.000225 m5=0.000086 m6=0.000035 koleo=2.2481 elapsed=0.4s
+[sixth_order_koleo_class4] step   300/1500 order=6 loss=0.009404 means=0.00016473 cov=0.00000037 m3=0.000052 m4=0.000036 m5=0.000017 m6=0.000009 koleo=2.2500 elapsed=66.5s
+[sixth_order_koleo_class4] step   600/1500 order=6 loss=0.006401 means=0.00012032 cov=0.00000029 m3=0.000037 m4=0.000028 m5=0.000013 m6=0.000006 koleo=2.2717 elapsed=132.9s
+[sixth_order_koleo_class4] step   900/1500 order=6 loss=0.005040 means=0.00006846 cov=0.00000026 m3=0.000031 m4=0.000025 m5=0.000012 m6=0.000005 koleo=2.2856 elapsed=199.3s
+[sixth_order_koleo_class4] step  1200/1500 order=6 loss=0.004186 means=0.00001685 cov=0.00000024 m3=0.000028 m4=0.000022 m5=0.000010 m6=0.000005 koleo=2.2930 elapsed=265.7s
+[sixth_order_koleo_class4] step  1499/1500 order=6 loss=0.003599 means=0.00000004 cov=0.00000023 m3=0.000026 m4=0.000020 m5=0.000009 m6=0.000004 koleo=2.2953 elapsed=332.0s
+[sixth_order_koleo_class4] [final] order=6 use_entropy=True means=0.00000003 cov=2.2983226699579973e-07 moments={3: 2.5524526018382228e-05, 4: 2.0150963488655787e-05, 5: 9.17632744623966e-06, 6: 4.080562373726732e-06} koleo=2.2953 range=[0.0000,1.0000]
+[sixth_order_koleo class 4] optimization done in 333.8s (5.6 min)
+[sixth_order_koleo class 4] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class4.npz
+[sixth_order_koleo class 4] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 4] === END 18:28:51 total_wall=340.9s (5.7 min) ===
+2026-08-13 18:28:53.581668: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:28:54.308227: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 18:28:56.260263: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[sixth_order_koleo class 5] === START 18:28:58 order=6 entropy=True n_steps=1500 ===
+[sixth_order_koleo class 5] data loaded in 1.7s
+[sixth_order_koleo class 5] 5000 real samples, D=3072, device=cuda
+[sixth_order_koleo_class5] step     0/1500 order=6 loss=0.122024 means=0.00010311 cov=0.00000055 m3=0.000778 m4=0.000297 m5=0.000121 m6=0.000047 koleo=2.4238 elapsed=0.4s
+[sixth_order_koleo_class5] step   300/1500 order=6 loss=0.015317 means=0.00017844 cov=0.00000036 m3=0.000079 m4=0.000060 m5=0.000025 m6=0.000012 koleo=2.4112 elapsed=66.5s
+[sixth_order_koleo_class5] step   600/1500 order=6 loss=0.011160 means=0.00012344 cov=0.00000028 m3=0.000056 m4=0.000048 m5=0.000021 m6=0.000009 koleo=2.4349 elapsed=132.9s
+[sixth_order_koleo_class5] step   900/1500 order=6 loss=0.009330 means=0.00006789 cov=0.00000025 m3=0.000048 m4=0.000043 m5=0.000019 m6=0.000008 koleo=2.4524 elapsed=199.2s
+[sixth_order_koleo_class5] step  1200/1500 order=6 loss=0.008236 means=0.00001700 cov=0.00000024 m3=0.000043 m4=0.000039 m5=0.000017 m6=0.000007 koleo=2.4633 elapsed=265.6s
+[sixth_order_koleo_class5] step  1499/1500 order=6 loss=0.007490 means=0.00000003 cov=0.00000023 m3=0.000040 m4=0.000037 m5=0.000016 m6=0.000007 koleo=2.4681 elapsed=331.8s
+[sixth_order_koleo_class5] [final] order=6 use_entropy=True means=0.00000004 cov=2.2834699109353096e-07 moments={3: 4.004422851191545e-05, 4: 3.66812390792701e-05, 5: 1.6248609373185542e-05, 6: 6.589168656824364e-06} koleo=2.4681 range=[0.0000,1.0000]
+[sixth_order_koleo class 5] optimization done in 333.6s (5.6 min)
+[sixth_order_koleo class 5] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class5.npz
+[sixth_order_koleo class 5] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 5] === END 18:34:38 total_wall=340.8s (5.7 min) ===
+2026-08-13 18:34:41.062690: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:34:41.787713: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 18:34:43.744105: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[sixth_order_koleo class 6] === START 18:34:45 order=6 entropy=True n_steps=1500 ===
+[sixth_order_koleo class 6] data loaded in 1.7s
+[sixth_order_koleo class 6] 5000 real samples, D=3072, device=cuda
+[sixth_order_koleo_class6] step     0/1500 order=6 loss=0.204144 means=0.00011384 cov=0.00000060 m3=0.001334 m4=0.000442 m5=0.000210 m6=0.000077 koleo=2.2947 elapsed=0.4s
+[sixth_order_koleo_class6] step   300/1500 order=6 loss=0.013887 means=0.00033145 cov=0.00000059 m3=0.000070 m4=0.000046 m5=0.000027 m6=0.000015 koleo=2.2759 elapsed=66.5s
+[sixth_order_koleo_class6] step   600/1500 order=6 loss=0.009334 means=0.00031732 cov=0.00000042 m3=0.000050 m4=0.000035 m5=0.000018 m6=0.000010 koleo=2.2929 elapsed=132.9s
+[sixth_order_koleo_class6] step   900/1500 order=6 loss=0.007423 means=0.00028352 cov=0.00000035 m3=0.000042 m4=0.000030 m5=0.000015 m6=0.000008 koleo=2.3059 elapsed=199.3s
+[sixth_order_koleo_class6] step  1200/1500 order=6 loss=0.006306 means=0.00024612 cov=0.00000031 m3=0.000037 m4=0.000027 m5=0.000013 m6=0.000007 koleo=2.3154 elapsed=265.7s
+[sixth_order_koleo_class6] step  1499/1500 order=6 loss=0.005543 means=0.00020800 cov=0.00000029 m3=0.000034 m4=0.000025 m5=0.000012 m6=0.000006 koleo=2.3219 elapsed=332.0s
+[sixth_order_koleo_class6] [final] order=6 use_entropy=True means=0.00020788 cov=2.8844479516010324e-07 moments={3: 3.435973551025165e-05, 4: 2.4632883853175575e-05, 5: 1.1740643599851503e-05, 6: 5.798285538158207e-06} koleo=2.3219 range=[0.0000,1.0000]
+[sixth_order_koleo class 6] optimization done in 333.8s (5.6 min)
+[sixth_order_koleo class 6] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class6.npz
+[sixth_order_koleo class 6] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 6] === END 18:40:26 total_wall=340.9s (5.7 min) ===
+2026-08-13 18:40:28.698066: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:40:29.419289: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 18:40:31.371719: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[sixth_order_koleo class 7] === START 18:40:33 order=6 entropy=True n_steps=1500 ===
+[sixth_order_koleo class 7] data loaded in 1.7s
+[sixth_order_koleo class 7] 5000 real samples, D=3072, device=cuda
+[sixth_order_koleo_class7] step     0/1500 order=6 loss=0.093073 means=0.00009345 cov=0.00000069 m3=0.000559 m4=0.000296 m5=0.000061 m6=0.000038 koleo=2.4353 elapsed=0.4s
+[sixth_order_koleo_class7] step   300/1500 order=6 loss=0.015108 means=0.00010772 cov=0.00000058 m3=0.000079 m4=0.000058 m5=0.000024 m6=0.000013 koleo=2.4173 elapsed=66.5s
+[sixth_order_koleo_class7] step   600/1500 order=6 loss=0.011028 means=0.00005734 cov=0.00000043 m3=0.000058 m4=0.000047 m5=0.000020 m6=0.000010 koleo=2.4357 elapsed=132.9s
+[sixth_order_koleo_class7] step   900/1500 order=6 loss=0.009279 means=0.00001211 cov=0.00000036 m3=0.000050 m4=0.000041 m5=0.000018 m6=0.000008 koleo=2.4476 elapsed=199.3s
+[sixth_order_koleo_class7] step  1200/1500 order=6 loss=0.008247 means=0.00000003 cov=0.00000033 m3=0.000046 m4=0.000038 m5=0.000016 m6=0.000007 koleo=2.4529 elapsed=265.6s
+[sixth_order_koleo_class7] step  1499/1500 order=6 loss=0.007540 means=0.00000003 cov=0.00000030 m3=0.000043 m4=0.000035 m5=0.000015 m6=0.000006 koleo=2.4547 elapsed=331.8s
+[sixth_order_koleo_class7] [final] order=6 use_entropy=True means=0.00000002 cov=3.000055528445955e-07 moments={3: 4.2688689872235545e-05, 4: 3.540143047252463e-05, 5: 1.5336172801880237e-05, 6: 6.490397801691735e-06} koleo=2.4547 range=[0.0000,1.0000]
+[sixth_order_koleo class 7] optimization done in 333.7s (5.6 min)
+[sixth_order_koleo class 7] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class7.npz
+[sixth_order_koleo class 7] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 7] === END 18:46:13 total_wall=340.8s (5.7 min) ===
+2026-08-13 18:46:16.336113: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:46:17.059744: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 18:46:18.997703: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[sixth_order_koleo class 8] === START 18:46:20 order=6 entropy=True n_steps=1500 ===
+[sixth_order_koleo class 8] data loaded in 1.7s
+[sixth_order_koleo class 8] 5000 real samples, D=3072, device=cuda
+[sixth_order_koleo_class8] step     0/1500 order=6 loss=0.087496 means=0.00007238 cov=0.00000063 m3=0.000583 m4=0.000230 m5=0.000055 m6=0.000029 koleo=2.3096 elapsed=0.4s
+[sixth_order_koleo_class8] step   300/1500 order=6 loss=0.010568 means=0.00004206 cov=0.00000027 m3=0.000057 m4=0.000044 m5=0.000019 m6=0.000008 koleo=2.3211 elapsed=66.5s
+[sixth_order_koleo_class8] step   600/1500 order=6 loss=0.007448 means=0.00000103 cov=0.00000025 m3=0.000041 m4=0.000035 m5=0.000016 m6=0.000007 koleo=2.3444 elapsed=132.9s
+[sixth_order_koleo_class8] step   900/1500 order=6 loss=0.006060 means=0.00000003 cov=0.00000024 m3=0.000034 m4=0.000030 m5=0.000014 m6=0.000006 koleo=2.3557 elapsed=199.3s
+[sixth_order_koleo_class8] step  1200/1500 order=6 loss=0.005224 means=0.00000003 cov=0.00000023 m3=0.000031 m4=0.000027 m5=0.000012 m6=0.000005 koleo=2.3614 elapsed=265.7s
+[sixth_order_koleo_class8] step  1499/1500 order=6 loss=0.004640 means=0.00000003 cov=0.00000022 m3=0.000028 m4=0.000025 m5=0.000012 m6=0.000005 koleo=2.3635 elapsed=331.9s
+[sixth_order_koleo_class8] [final] order=6 use_entropy=True means=0.00000003 cov=2.204975970698797e-07 moments={3: 2.836665349722499e-05, 4: 2.535437427771588e-05, 5: 1.1515614559402863e-05, 6: 4.780587645385552e-06} koleo=2.3635 range=[0.0000,1.0000]
+[sixth_order_koleo class 8] optimization done in 333.8s (5.6 min)
+[sixth_order_koleo class 8] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class8.npz
+[sixth_order_koleo class 8] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 8] === END 18:52:01 total_wall=340.8s (5.7 min) ===
+2026-08-13 18:52:03.850595: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:52:04.577840: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-13 18:52:06.531239: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2251] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+[sixth_order_koleo class 9] === START 18:52:08 order=6 entropy=True n_steps=1500 ===
+[sixth_order_koleo class 9] data loaded in 1.6s
+[sixth_order_koleo class 9] 5000 real samples, D=3072, device=cuda
+[sixth_order_koleo_class9] step     0/1500 order=6 loss=0.106276 means=0.00011522 cov=0.00000081 m3=0.000764 m4=0.000232 m5=0.000066 m6=0.000024 koleo=2.4932 elapsed=0.4s
+[sixth_order_koleo_class9] step   300/1500 order=6 loss=0.017728 means=0.00024243 cov=0.00000048 m3=0.000101 m4=0.000064 m5=0.000025 m6=0.000010 koleo=2.4632 elapsed=66.5s
+[sixth_order_koleo_class9] step   600/1500 order=6 loss=0.013644 means=0.00019922 cov=0.00000038 m3=0.000075 m4=0.000054 m5=0.000022 m6=0.000009 koleo=2.4782 elapsed=132.9s
+[sixth_order_koleo_class9] step   900/1500 order=6 loss=0.011841 means=0.00014766 cov=0.00000034 m3=0.000065 m4=0.000049 m5=0.000020 m6=0.000008 koleo=2.4916 elapsed=199.2s
+[sixth_order_koleo_class9] step  1200/1500 order=6 loss=0.010735 means=0.00009623 cov=0.00000032 m3=0.000060 m4=0.000046 m5=0.000019 m6=0.000007 koleo=2.4996 elapsed=265.6s
+[sixth_order_koleo_class9] step  1499/1500 order=6 loss=0.009952 means=0.00004843 cov=0.00000031 m3=0.000056 m4=0.000043 m5=0.000018 m6=0.000007 koleo=2.5038 elapsed=331.8s
+[sixth_order_koleo_class9] [final] order=6 use_entropy=True means=0.00004828 cov=3.111947535217041e-07 moments={3: 5.6090201781714316e-05, 4: 4.337377160684102e-05, 5: 1.7830229575175616e-05, 6: 6.751654264344661e-06} koleo=2.5038 range=[0.0000,1.0000]
+[sixth_order_koleo class 9] optimization done in 333.6s (5.6 min)
+[sixth_order_koleo class 9] saved to /home/nakano/server/moment_data/deletion/sixth_order_koleo/_partial/class9.npz
+[sixth_order_koleo class 9] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_koleo class 9] === END 18:57:49 total_wall=340.8s (5.7 min) ===

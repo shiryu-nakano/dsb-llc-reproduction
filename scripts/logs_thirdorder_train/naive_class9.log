@@ -18,3 +18,13 @@ Skipping registering GPU devices...
 [class9]   [detail] step   300/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.494s/step elapsed=333.6min | mem alloc=1.68GB reserved=6.90GB
 
 [class9]   [detail] step   400/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.498s/step elapsed=444.4min | mem alloc=1.68GB reserved=6.90GB
+
+[class9]   [detail] step   500/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.500s/step elapsed=555.2min | mem alloc=1.68GB reserved=6.90GB
+
+[class9]   [detail] step   600/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.512s/step elapsed=666.1min | mem alloc=1.68GB reserved=6.90GB
+
+[class9]   [detail] step   700/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.505s/step elapsed=776.9min | mem alloc=1.68GB reserved=6.90GB
+
+[class9]   [detail] step   800/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.484s/step elapsed=887.7min | mem alloc=1.68GB reserved=6.90GB
+
+[class9]   [detail] step   900/1500 means=0.000001 cov=0.000001 coskew(mb)=0.000000 bounds=0.000000 | interval 66.486s/step elapsed=998.5min | mem alloc=1.68GB reserved=6.90GB
