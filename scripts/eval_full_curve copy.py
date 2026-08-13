@@ -1,13 +1,9 @@
 # scripts/eval_full_curve.py
 """
-deletion_vision の全チェックポイントに対し、
+deletion_vision (ConvNeXt-atto) の全チェックポイントに対し、
   - train_acc, train_loss : 学習に使った編集データ (moment-edited) 上での指標
   - test_acc,  test_loss  : 実CIFAR-10テストセット上での指標
 を1パスで計算し、JSONLに逐次保存する。
-
-対応net: convnext-atto, regnet-400mf, swin-atto
-  (モデル構築は train_vision_moment.py の build_model をそのまま使用し、
-   学習時と評価時でアーキテクチャ定義がズレるのを防ぐ)
 
 高速化・再開性:
   - データは手法ごとに1回だけロードしGPU上に保持
@@ -16,8 +12,7 @@ deletion_vision の全チェックポイントに対し、
 
 使用例:
   CUDA_VISIBLE_DEVICES=2 python3 eval_full_curve.py \
-      --methods fifth_order_gram --net regnet-400mf --seeds 42 43 44 \
-      --out /home/nakano/server/llc_results_dense/deletion_vision_fifth_order_gram_regnet.jsonl
+      --out /home/nakano/server/llc_results_dense/deletion_vision_full_curve.jsonl
 """
 from argparse import ArgumentParser
 from pathlib import Path
@@ -29,17 +24,22 @@ import torch.nn.functional as F
 from safetensors.torch import load_file
 import torchvision.transforms as T
 from datasets import load_dataset
+from transformers import ConvNextV2Config, ConvNextV2ForImageClassification
 
-# train_vision_moment.py と同一のモデル構築ロジックを使う
-from train_vision_moment import build_model
+
+def build_convnext_atto(num_classes=10, image_size=32):
+    cfg = ConvNextV2Config(
+        image_size=image_size, num_labels=num_classes,
+        hidden_sizes=[40, 80, 160, 320], depths=[2, 2, 6, 2],
+        drop_path_rate=0.1, patch_size=1,
+    )
+    return ConvNextV2ForImageClassification(cfg)
 
 
 def load_moment_train_data(data_root, method, device):
     dir_path = Path(data_root) / "deletion" / method
     npz_files = sorted(dir_path.glob("*.npz"))
-    assert len(npz_files) == 1, (
-        f"Expected exactly one .npz in {dir_path}, found {npz_files}"
-    )
+    assert len(npz_files) == 1
     d = np.load(npz_files[0])
 
     images = d["pixel_values"]
@@ -78,8 +78,6 @@ def main():
                     default=["conrad", "gaussian", "ics", "truncated_normal"])
     p.add_argument("--seeds", nargs="+", type=int, default=[42, 43, 44])
     p.add_argument("--net", default="convnext-atto")
-    p.add_argument("--num-classes", type=int, default=10)
-    p.add_argument("--image-size", type=int, default=32)
     p.add_argument("--gpu", type=int, default=0)
     p.add_argument("--out", required=True)
     args = p.parse_args()
@@ -106,9 +104,7 @@ def main():
     test_imgs = torch.stack([tf(x.convert("RGB")) for x in eval_ds[img_key]]).to(device)
     test_labels = torch.tensor(eval_ds[label_key]).to(device)
 
-    print(f"Building model: {args.net}")
-    model = build_model(args.net, num_classes=args.num_classes,
-                         image_size=args.image_size).to(device).eval()
+    model = build_convnext_atto().to(device).eval()
 
     f_out = open(out_path, "a")
     for method in args.methods:
@@ -137,7 +133,7 @@ def main():
                 test_acc, test_loss = evaluate_acc_and_loss(model, test_imgs, test_labels)
 
                 rec = {
-                    "method": method, "seed": seed, "step": step, "net": args.net,
+                    "method": method, "seed": seed, "step": step,
                     "train_acc": train_acc, "train_loss": train_loss,
                     "test_acc": test_acc, "test_loss": test_loss,
                 }
