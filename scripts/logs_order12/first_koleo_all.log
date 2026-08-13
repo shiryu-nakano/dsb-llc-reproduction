@@ -1,0 +1,170 @@
+2026-08-13 18:08:53.176629: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:08:53.903176: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 0] === START 18:08:58 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 0] data loaded in 2.0s
+[first_order_koleo class 0] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class0] step     0/1500 order=1 loss=-0.002771 means=0.00010052 cov=0.00000000  koleo=2.8717 elapsed=0.3s
+[first_order_koleo_class0] step   300/1500 order=1 loss=-0.002884 means=0.00000005 cov=0.00000000  koleo=2.8836 elapsed=8.7s
+[first_order_koleo_class0] step   600/1500 order=1 loss=-0.002893 means=0.00000006 cov=0.00000000  koleo=2.8930 elapsed=17.2s
+[first_order_koleo_class0] step   900/1500 order=1 loss=-0.002901 means=0.00000004 cov=0.00000000  koleo=2.9010 elapsed=25.7s
+[first_order_koleo_class0] step  1200/1500 order=1 loss=-0.002908 means=0.00000004 cov=0.00000000  koleo=2.9082 elapsed=34.3s
+[first_order_koleo_class0] step  1499/1500 order=1 loss=-0.002915 means=0.00000004 cov=0.00000000  koleo=2.9150 elapsed=42.9s
+[first_order_koleo_class0] [final] order=1 use_entropy=True means=0.00000004 cov=None moments={} koleo=2.9150 range=[0.0000,1.0000]
+[first_order_koleo class 0] optimization done in 44.1s (0.7 min)
+[first_order_koleo class 0] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class0.npz
+[first_order_koleo class 0] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 0] === END 18:09:48 total_wall=49.6s (0.8 min) ===
+2026-08-13 18:09:50.367078: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:09:51.087410: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 1] === START 18:09:54 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 1] data loaded in 2.0s
+[first_order_koleo class 1] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class1] step     0/1500 order=1 loss=-0.002826 means=0.00009512 cov=0.00000000  koleo=2.9211 elapsed=0.3s
+[first_order_koleo_class1] step   300/1500 order=1 loss=-0.002932 means=0.00000004 cov=0.00000000  koleo=2.9321 elapsed=8.8s
+[first_order_koleo_class1] step   600/1500 order=1 loss=-0.002940 means=0.00000004 cov=0.00000000  koleo=2.9403 elapsed=17.4s
+[first_order_koleo_class1] step   900/1500 order=1 loss=-0.002947 means=0.00000003 cov=0.00000000  koleo=2.9472 elapsed=26.1s
+[first_order_koleo_class1] step  1200/1500 order=1 loss=-0.002953 means=0.00000004 cov=0.00000000  koleo=2.9535 elapsed=34.8s
+[first_order_koleo_class1] step  1499/1500 order=1 loss=-0.002959 means=0.00000003 cov=0.00000000  koleo=2.9594 elapsed=43.6s
+[first_order_koleo_class1] [final] order=1 use_entropy=True means=0.00000003 cov=None moments={} koleo=2.9594 range=[0.0000,1.0000]
+[first_order_koleo class 1] optimization done in 44.6s (0.7 min)
+[first_order_koleo class 1] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class1.npz
+[first_order_koleo class 1] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 1] === END 18:10:44 total_wall=50.2s (0.8 min) ===
+2026-08-13 18:10:46.954580: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:10:47.681153: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 2] === START 18:10:51 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 2] data loaded in 1.6s
+[first_order_koleo class 2] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class2] step     0/1500 order=1 loss=-0.002753 means=0.00006546 cov=0.00000000  koleo=2.8184 elapsed=0.3s
+[first_order_koleo_class2] step   300/1500 order=1 loss=-0.002836 means=0.00000006 cov=0.00000000  koleo=2.8356 elapsed=8.9s
+[first_order_koleo_class2] step   600/1500 order=1 loss=-0.002846 means=0.00000004 cov=0.00000000  koleo=2.8464 elapsed=17.7s
+[first_order_koleo_class2] step   900/1500 order=1 loss=-0.002856 means=0.00000003 cov=0.00000000  koleo=2.8558 elapsed=26.5s
+[first_order_koleo_class2] step  1200/1500 order=1 loss=-0.002864 means=0.00000003 cov=0.00000000  koleo=2.8644 elapsed=35.4s
+[first_order_koleo_class2] step  1499/1500 order=1 loss=-0.002873 means=0.00000003 cov=0.00000000  koleo=2.8726 elapsed=44.2s
+[first_order_koleo_class2] [final] order=1 use_entropy=True means=0.00000006 cov=None moments={} koleo=2.8726 range=[0.0000,1.0000]
+[first_order_koleo class 2] optimization done in 45.3s (0.8 min)
+[first_order_koleo class 2] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class2.npz
+[first_order_koleo class 2] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 2] === END 18:11:41 total_wall=50.3s (0.8 min) ===
+2026-08-13 18:11:43.675275: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:11:44.405788: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 3] === START 18:11:48 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 3] data loaded in 1.8s
+[first_order_koleo class 3] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class3] step     0/1500 order=1 loss=-0.002820 means=0.00008394 cov=0.00000000  koleo=2.9039 elapsed=0.3s
+[first_order_koleo_class3] step   300/1500 order=1 loss=-0.002917 means=0.00000004 cov=0.00000000  koleo=2.9167 elapsed=9.0s
+[first_order_koleo_class3] step   600/1500 order=1 loss=-0.002925 means=0.00000003 cov=0.00000000  koleo=2.9254 elapsed=17.8s
+[first_order_koleo_class3] step   900/1500 order=1 loss=-0.002933 means=0.00000004 cov=0.00000000  koleo=2.9328 elapsed=26.7s
+[first_order_koleo_class3] step  1200/1500 order=1 loss=-0.002939 means=0.00000003 cov=0.00000000  koleo=2.9394 elapsed=35.7s
+[first_order_koleo_class3] step  1499/1500 order=1 loss=-0.002946 means=0.00000002 cov=0.00000000  koleo=2.9457 elapsed=44.6s
+[first_order_koleo_class3] [final] order=1 use_entropy=True means=0.00000005 cov=None moments={} koleo=2.9457 range=[0.0000,1.0000]
+[first_order_koleo class 3] optimization done in 45.7s (0.8 min)
+[first_order_koleo class 3] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class3.npz
+[first_order_koleo class 3] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 3] === END 18:12:39 total_wall=51.0s (0.8 min) ===
+2026-08-13 18:12:41.136406: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:12:41.860998: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 4] === START 18:12:45 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 4] data loaded in 1.7s
+[first_order_koleo class 4] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class4] step     0/1500 order=1 loss=-0.002675 means=0.00006459 cov=0.00000000  koleo=2.7398 elapsed=0.3s
+[first_order_koleo_class4] step   300/1500 order=1 loss=-0.002760 means=0.00000007 cov=0.00000000  koleo=2.7597 elapsed=9.0s
+[first_order_koleo_class4] step   600/1500 order=1 loss=-0.002773 means=0.00000003 cov=0.00000000  koleo=2.7728 elapsed=17.9s
+[first_order_koleo_class4] step   900/1500 order=1 loss=-0.002784 means=0.00000007 cov=0.00000000  koleo=2.7842 elapsed=26.8s
+[first_order_koleo_class4] step  1200/1500 order=1 loss=-0.002795 means=0.00000004 cov=0.00000000  koleo=2.7948 elapsed=35.8s
+[first_order_koleo_class4] step  1499/1500 order=1 loss=-0.002805 means=0.00000004 cov=0.00000000  koleo=2.8049 elapsed=44.8s
+[first_order_koleo_class4] [final] order=1 use_entropy=True means=0.00000004 cov=None moments={} koleo=2.8049 range=[0.0000,1.0000]
+[first_order_koleo class 4] optimization done in 45.9s (0.8 min)
+[first_order_koleo class 4] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class4.npz
+[first_order_koleo class 4] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 4] === END 18:13:36 total_wall=50.8s (0.8 min) ===
+2026-08-13 18:13:38.462303: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:13:39.188858: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 5] === START 18:13:42 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 5] data loaded in 1.9s
+[first_order_koleo class 5] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class5] step     0/1500 order=1 loss=-0.002793 means=0.00008157 cov=0.00000000  koleo=2.8748 elapsed=0.3s
+[first_order_koleo_class5] step   300/1500 order=1 loss=-0.002889 means=0.00000003 cov=0.00000000  koleo=2.8885 elapsed=9.0s
+[first_order_koleo_class5] step   600/1500 order=1 loss=-0.002898 means=0.00000006 cov=0.00000000  koleo=2.8980 elapsed=18.0s
+[first_order_koleo_class5] step   900/1500 order=1 loss=-0.002906 means=0.00000004 cov=0.00000000  koleo=2.9059 elapsed=26.9s
+[first_order_koleo_class5] step  1200/1500 order=1 loss=-0.002913 means=0.00000003 cov=0.00000000  koleo=2.9132 elapsed=35.9s
+[first_order_koleo_class5] step  1499/1500 order=1 loss=-0.002920 means=0.00000004 cov=0.00000000  koleo=2.9200 elapsed=44.9s
+[first_order_koleo_class5] [final] order=1 use_entropy=True means=0.00000005 cov=None moments={} koleo=2.9201 range=[0.0000,1.0000]
+[first_order_koleo class 5] optimization done in 46.0s (0.8 min)
+[first_order_koleo class 5] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class5.npz
+[first_order_koleo class 5] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 5] === END 18:14:34 total_wall=51.4s (0.9 min) ===
+2026-08-13 18:14:36.327343: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:14:37.056806: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 6] === START 18:14:40 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 6] data loaded in 1.7s
+[first_order_koleo class 6] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class6] step     0/1500 order=1 loss=-0.002693 means=0.00008412 cov=0.00000000  koleo=2.7771 elapsed=0.3s
+[first_order_koleo_class6] step   300/1500 order=1 loss=-0.002793 means=0.00000005 cov=0.00000000  koleo=2.7930 elapsed=9.1s
+[first_order_koleo_class6] step   600/1500 order=1 loss=-0.002805 means=0.00000004 cov=0.00000000  koleo=2.8047 elapsed=18.0s
+[first_order_koleo_class6] step   900/1500 order=1 loss=-0.002815 means=0.00000003 cov=0.00000000  koleo=2.8149 elapsed=26.9s
+[first_order_koleo_class6] step  1200/1500 order=1 loss=-0.002824 means=0.00000003 cov=0.00000000  koleo=2.8242 elapsed=35.9s
+[first_order_koleo_class6] step  1499/1500 order=1 loss=-0.002833 means=0.00000004 cov=0.00000000  koleo=2.8331 elapsed=44.9s
+[first_order_koleo_class6] [final] order=1 use_entropy=True means=0.00000004 cov=None moments={} koleo=2.8331 range=[0.0000,1.0000]
+[first_order_koleo class 6] optimization done in 46.0s (0.8 min)
+[first_order_koleo class 6] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class6.npz
+[first_order_koleo class 6] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 6] === END 18:15:31 total_wall=51.1s (0.9 min) ===
+2026-08-13 18:15:33.888267: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:15:34.606487: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 7] === START 18:15:38 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 7] data loaded in 1.7s
+[first_order_koleo class 7] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class7] step     0/1500 order=1 loss=-0.002784 means=0.00007580 cov=0.00000000  koleo=2.8602 elapsed=0.3s
+[first_order_koleo_class7] step   300/1500 order=1 loss=-0.002875 means=0.00000005 cov=0.00000000  koleo=2.8748 elapsed=9.1s
+[first_order_koleo_class7] step   600/1500 order=1 loss=-0.002884 means=0.00000004 cov=0.00000000  koleo=2.8845 elapsed=18.0s
+[first_order_koleo_class7] step   900/1500 order=1 loss=-0.002893 means=0.00000004 cov=0.00000000  koleo=2.8927 elapsed=27.0s
+[first_order_koleo_class7] step  1200/1500 order=1 loss=-0.002900 means=0.00000004 cov=0.00000000  koleo=2.9002 elapsed=36.0s
+[first_order_koleo_class7] step  1499/1500 order=1 loss=-0.002907 means=0.00000004 cov=0.00000000  koleo=2.9073 elapsed=45.0s
+[first_order_koleo_class7] [final] order=1 use_entropy=True means=0.00000004 cov=None moments={} koleo=2.9073 range=[0.0000,1.0000]
+[first_order_koleo class 7] optimization done in 46.1s (0.8 min)
+[first_order_koleo class 7] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class7.npz
+[first_order_koleo class 7] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 7] === END 18:16:29 total_wall=51.2s (0.9 min) ===
+2026-08-13 18:16:31.547021: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:16:32.272197: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 8] === START 18:16:35 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 8] data loaded in 2.0s
+[first_order_koleo class 8] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class8] step     0/1500 order=1 loss=-0.002726 means=0.00009328 cov=0.00000000  koleo=2.8191 elapsed=0.3s
+[first_order_koleo_class8] step   300/1500 order=1 loss=-0.002833 means=0.00000003 cov=0.00000000  koleo=2.8330 elapsed=9.1s
+[first_order_koleo_class8] step   600/1500 order=1 loss=-0.002844 means=0.00000003 cov=0.00000000  koleo=2.8436 elapsed=18.0s
+[first_order_koleo_class8] step   900/1500 order=1 loss=-0.002853 means=0.00000005 cov=0.00000000  koleo=2.8527 elapsed=27.0s
+[first_order_koleo_class8] step  1200/1500 order=1 loss=-0.002861 means=0.00000002 cov=0.00000000  koleo=2.8611 elapsed=36.0s
+[first_order_koleo_class8] step  1499/1500 order=1 loss=-0.002869 means=0.00000003 cov=0.00000000  koleo=2.8690 elapsed=45.0s
+[first_order_koleo_class8] [final] order=1 use_entropy=True means=0.00000003 cov=None moments={} koleo=2.8690 range=[0.0000,1.0000]
+[first_order_koleo class 8] optimization done in 46.0s (0.8 min)
+[first_order_koleo class 8] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class8.npz
+[first_order_koleo class 8] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 8] === END 18:17:27 total_wall=51.5s (0.9 min) ===
+2026-08-13 18:17:29.534342: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:17:30.263596: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[first_order_koleo class 9] === START 18:17:33 order=1 entropy=True n_steps=1500 ===
+[first_order_koleo class 9] data loaded in 1.7s
+[first_order_koleo class 9] 5000 real samples, D=3072, device=cuda
+[first_order_koleo_class9] step     0/1500 order=1 loss=-0.002732 means=0.00014400 cov=0.00000000  koleo=2.8763 elapsed=0.3s
+[first_order_koleo_class9] step   300/1500 order=1 loss=-0.002884 means=0.00000005 cov=0.00000000  koleo=2.8842 elapsed=9.1s
+[first_order_koleo_class9] step   600/1500 order=1 loss=-0.002893 means=0.00000003 cov=0.00000000  koleo=2.8934 elapsed=18.0s
+[first_order_koleo_class9] step   900/1500 order=1 loss=-0.002901 means=0.00000004 cov=0.00000000  koleo=2.9012 elapsed=27.0s
+[first_order_koleo_class9] step  1200/1500 order=1 loss=-0.002908 means=0.00000003 cov=0.00000000  koleo=2.9082 elapsed=36.0s
+[first_order_koleo_class9] step  1499/1500 order=1 loss=-0.002915 means=0.00000002 cov=0.00000000  koleo=2.9149 elapsed=45.0s
+[first_order_koleo_class9] [final] order=1 use_entropy=True means=0.00000002 cov=None moments={} koleo=2.9149 range=[0.0000,1.0000]
+[first_order_koleo class 9] optimization done in 46.1s (0.8 min)
+[first_order_koleo class 9] saved to /home/nakano/server/moment_data/deletion/first_order_koleo/_partial/class9.npz
+[first_order_koleo class 9] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[first_order_koleo class 9] === END 18:18:25 total_wall=51.2s (0.9 min) ===

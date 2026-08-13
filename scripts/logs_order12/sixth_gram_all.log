@@ -1,0 +1,170 @@
+2026-08-13 18:08:53.171332: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:08:53.905202: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 0] === START 18:08:58 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 0] data loaded in 1.9s
+[sixth_order_gram class 0] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class0] step     0/1500 order=6 loss=0.149677 means=0.00007695 cov=0.00000083 m3=0.000906 m4=0.000418 m5=0.000105 m6=0.000067 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class0] step   300/1500 order=6 loss=0.008931 means=0.00000060 cov=0.00000033 m3=0.000038 m4=0.000029 m5=0.000015 m6=0.000007 bounds=0.00003694 elapsed=54.3s
+[sixth_order_gram_class0] step   600/1500 order=6 loss=0.006925 means=0.00000041 cov=0.00000031 m3=0.000031 m4=0.000022 m5=0.000011 m6=0.000005 bounds=0.00001167 elapsed=110.1s
+[sixth_order_gram_class0] step   900/1500 order=6 loss=0.005899 means=0.00000032 cov=0.00000029 m3=0.000028 m4=0.000018 m5=0.000009 m6=0.000004 bounds=0.00000542 elapsed=166.9s
+[sixth_order_gram_class0] step  1200/1500 order=6 loss=0.005252 means=0.00000035 cov=0.00000029 m3=0.000026 m4=0.000015 m5=0.000008 m6=0.000004 bounds=0.00000208 elapsed=224.1s
+[sixth_order_gram_class0] step  1499/1500 order=6 loss=0.004793 means=0.00000339 cov=0.00000028 m3=0.000024 m4=0.000014 m5=0.000007 m6=0.000003 bounds=0.00000095 elapsed=281.2s
+[sixth_order_gram_class0] [final] order=6 use_entropy=False means=0.00000030 cov=2.840017430116859e-07 moments={3: 2.406195301018491e-05, 4: 1.3569989176984462e-05, 5: 6.95591436154384e-06, 6: 3.263540242591666e-06} bounds=0.00000092 range=[-0.0953,1.1209]
+[sixth_order_gram class 0] optimization done in 283.0s (4.7 min)
+[sixth_order_gram class 0] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class0.npz
+[sixth_order_gram class 0] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 0] === END 18:13:46 total_wall=288.1s (4.8 min) ===
+2026-08-13 18:13:48.955161: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:13:49.681368: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 1] === START 18:13:53 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 1] data loaded in 1.6s
+[sixth_order_gram class 1] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class1] step     0/1500 order=6 loss=0.224318 means=0.00008746 cov=0.00000113 m3=0.001465 m4=0.000517 m5=0.000189 m6=0.000072 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class1] step   300/1500 order=6 loss=0.012206 means=0.00000094 cov=0.00000045 m3=0.000053 m4=0.000041 m5=0.000018 m6=0.000008 bounds=0.00012179 elapsed=57.1s
+[sixth_order_gram_class1] step   600/1500 order=6 loss=0.009646 means=0.00000324 cov=0.00000038 m3=0.000044 m4=0.000032 m5=0.000014 m6=0.000006 bounds=0.00006444 elapsed=114.5s
+[sixth_order_gram_class1] step   900/1500 order=6 loss=0.008221 means=0.00000340 cov=0.00000033 m3=0.000038 m4=0.000027 m5=0.000012 m6=0.000005 bounds=0.00004964 elapsed=171.9s
+[sixth_order_gram_class1] step  1200/1500 order=6 loss=0.007187 means=0.00000372 cov=0.00000029 m3=0.000034 m4=0.000023 m5=0.000010 m6=0.000004 bounds=0.00004193 elapsed=229.3s
+[sixth_order_gram_class1] step  1499/1500 order=6 loss=0.006398 means=0.00000027 cov=0.00000024 m3=0.000031 m4=0.000020 m5=0.000009 m6=0.000004 bounds=0.00003616 elapsed=286.5s
+[sixth_order_gram_class1] [final] order=6 use_entropy=False means=0.00000384 cov=2.5130495373559825e-07 moments={3: 3.145037320987517e-05, 4: 2.010522035157515e-05, 5: 8.519824558303339e-06, 6: 3.4916285787605575e-06} bounds=0.00003664 range=[-0.1088,1.2819]
+[sixth_order_gram class 1] optimization done in 288.0s (4.8 min)
+[sixth_order_gram class 1] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class1.npz
+[sixth_order_gram class 1] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 1] === END 18:18:46 total_wall=292.9s (4.9 min) ===
+2026-08-13 18:18:48.410808: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:18:49.136504: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 2] === START 18:18:52 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 2] data loaded in 1.8s
+[sixth_order_gram class 2] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class2] step     0/1500 order=6 loss=0.155524 means=0.00009259 cov=0.00000053 m3=0.000972 m4=0.000363 m5=0.000156 m6=0.000064 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class2] step   300/1500 order=6 loss=0.008201 means=0.00000015 cov=0.00000033 m3=0.000036 m4=0.000026 m5=0.000013 m6=0.000006 bounds=0.00006896 elapsed=57.0s
+[sixth_order_gram_class2] step   600/1500 order=6 loss=0.006418 means=0.00000043 cov=0.00000029 m3=0.000030 m4=0.000020 m5=0.000010 m6=0.000005 bounds=0.00003607 elapsed=114.3s
+[sixth_order_gram_class2] step   900/1500 order=6 loss=0.005513 means=0.00000052 cov=0.00000028 m3=0.000026 m4=0.000016 m5=0.000008 m6=0.000004 bounds=0.00001955 elapsed=171.5s
+[sixth_order_gram_class2] step  1200/1500 order=6 loss=0.004914 means=0.00000026 cov=0.00000027 m3=0.000024 m4=0.000014 m5=0.000007 m6=0.000004 bounds=0.00000981 elapsed=228.6s
+[sixth_order_gram_class2] step  1499/1500 order=6 loss=0.004479 means=0.00000376 cov=0.00000026 m3=0.000023 m4=0.000012 m5=0.000006 m6=0.000003 bounds=0.00000480 elapsed=285.4s
+[sixth_order_gram_class2] [final] order=6 use_entropy=False means=0.00000022 cov=2.5820031623879913e-07 moments={3: 2.2870516294016013e-05, 4: 1.2473160394519153e-05, 5: 6.25695142917719e-06, 6: 3.0877337040793564e-06} bounds=0.00000442 range=[-0.0947,1.1995]
+[sixth_order_gram class 2] optimization done in 287.0s (4.8 min)
+[sixth_order_gram class 2] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class2.npz
+[sixth_order_gram class 2] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 2] === END 18:23:44 total_wall=291.9s (4.9 min) ===
+2026-08-13 18:23:46.861366: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:23:47.589842: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 3] === START 18:23:51 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 3] data loaded in 2.0s
+[sixth_order_gram class 3] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class3] step     0/1500 order=6 loss=0.159052 means=0.00010718 cov=0.00000088 m3=0.000937 m4=0.000439 m5=0.000148 m6=0.000065 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class3] step   300/1500 order=6 loss=0.010496 means=0.00000068 cov=0.00000037 m3=0.000042 m4=0.000036 m5=0.000018 m6=0.000008 bounds=0.00005738 elapsed=56.8s
+[sixth_order_gram_class3] step   600/1500 order=6 loss=0.008232 means=0.00000060 cov=0.00000031 m3=0.000034 m4=0.000028 m5=0.000014 m6=0.000006 bounds=0.00003205 elapsed=113.9s
+[sixth_order_gram_class3] step   900/1500 order=6 loss=0.007049 means=0.00000055 cov=0.00000027 m3=0.000030 m4=0.000023 m5=0.000011 m6=0.000005 bounds=0.00001949 elapsed=170.8s
+[sixth_order_gram_class3] step  1200/1500 order=6 loss=0.006206 means=0.00000013 cov=0.00000024 m3=0.000028 m4=0.000020 m5=0.000010 m6=0.000004 bounds=0.00001202 elapsed=227.6s
+[sixth_order_gram_class3] step  1499/1500 order=6 loss=0.005597 means=0.00000355 cov=0.00000022 m3=0.000026 m4=0.000018 m5=0.000009 m6=0.000004 bounds=0.00000774 elapsed=284.3s
+[sixth_order_gram_class3] [final] order=6 use_entropy=False means=0.00000026 cov=2.1627465685014613e-07 moments={3: 2.5791686975973497e-05, 4: 1.766261347155604e-05, 5: 8.582632695346977e-06, 6: 3.865864224887143e-06} bounds=0.00000736 range=[-0.0989,1.1729]
+[sixth_order_gram class 3] optimization done in 285.8s (4.8 min)
+[sixth_order_gram class 3] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class3.npz
+[sixth_order_gram class 3] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 3] === END 18:28:42 total_wall=291.0s (4.8 min) ===
+2026-08-13 18:28:44.454779: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:28:45.183349: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 4] === START 18:28:48 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 4] data loaded in 1.7s
+[sixth_order_gram class 4] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class4] step     0/1500 order=6 loss=0.099240 means=0.00009890 cov=0.00000039 m3=0.000635 m4=0.000237 m5=0.000083 m6=0.000036 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class4] step   300/1500 order=6 loss=0.006020 means=0.00000073 cov=0.00000031 m3=0.000027 m4=0.000019 m5=0.000009 m6=0.000004 bounds=0.00001835 elapsed=56.6s
+[sixth_order_gram_class4] step   600/1500 order=6 loss=0.004632 means=0.00000220 cov=0.00000027 m3=0.000022 m4=0.000014 m5=0.000007 m6=0.000003 bounds=0.00000733 elapsed=113.6s
+[sixth_order_gram_class4] step   900/1500 order=6 loss=0.003893 means=0.00000170 cov=0.00000025 m3=0.000020 m4=0.000012 m5=0.000005 m6=0.000002 bounds=0.00000316 elapsed=170.5s
+[sixth_order_gram_class4] step  1200/1500 order=6 loss=0.003425 means=0.00000215 cov=0.00000023 m3=0.000018 m4=0.000010 m5=0.000004 m6=0.000002 bounds=0.00000123 elapsed=227.4s
+[sixth_order_gram_class4] step  1499/1500 order=6 loss=0.003057 means=0.00000205 cov=0.00000022 m3=0.000017 m4=0.000008 m5=0.000004 m6=0.000002 bounds=0.00000053 elapsed=284.1s
+[sixth_order_gram_class4] [final] order=6 use_entropy=False means=0.00000184 cov=2.1878928180285584e-07 moments={3: 1.6641042607977844e-05, 4: 8.453229384031147e-06, 5: 3.7534979865277306e-06, 6: 1.7208021071618767e-06} bounds=0.00000043 range=[-0.0332,1.0878]
+[sixth_order_gram class 4] optimization done in 285.6s (4.8 min)
+[sixth_order_gram class 4] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class4.npz
+[sixth_order_gram class 4] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 4] === END 18:33:39 total_wall=290.4s (4.8 min) ===
+2026-08-13 18:33:41.509940: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:33:42.230134: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 5] === START 18:33:46 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 5] data loaded in 1.9s
+[sixth_order_gram class 5] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class5] step     0/1500 order=6 loss=0.123288 means=0.00009646 cov=0.00000063 m3=0.000752 m4=0.000315 m5=0.000117 m6=0.000048 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class5] step   300/1500 order=6 loss=0.009179 means=0.00000254 cov=0.00000028 m3=0.000038 m4=0.000032 m5=0.000015 m6=0.000006 bounds=0.00003040 elapsed=56.6s
+[sixth_order_gram_class5] step   600/1500 order=6 loss=0.006972 means=0.00000025 cov=0.00000024 m3=0.000030 m4=0.000024 m5=0.000011 m6=0.000005 bounds=0.00000840 elapsed=113.6s
+[sixth_order_gram_class5] step   900/1500 order=6 loss=0.005801 means=0.00000110 cov=0.00000021 m3=0.000026 m4=0.000020 m5=0.000009 m6=0.000004 bounds=0.00000255 elapsed=170.5s
+[sixth_order_gram_class5] step  1200/1500 order=6 loss=0.004980 means=0.00000156 cov=0.00000019 m3=0.000023 m4=0.000016 m5=0.000007 m6=0.000003 bounds=0.00000109 elapsed=227.3s
+[sixth_order_gram_class5] step  1499/1500 order=6 loss=0.004375 means=0.00000353 cov=0.00000017 m3=0.000021 m4=0.000014 m5=0.000006 m6=0.000002 bounds=0.00000071 elapsed=283.8s
+[sixth_order_gram_class5] [final] order=6 use_entropy=False means=0.00000015 cov=1.7256924422781594e-07 moments={3: 2.1030546962406838e-05, 4: 1.396955081468655e-05, 5: 6.138893751529411e-06, 6: 2.5210826640465746e-06} bounds=0.00000058 range=[-0.0482,1.0686]
+[sixth_order_gram class 5] optimization done in 285.4s (4.8 min)
+[sixth_order_gram class 5] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class5.npz
+[sixth_order_gram class 5] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 5] === END 18:38:36 total_wall=290.3s (4.8 min) ===
+2026-08-13 18:38:38.529738: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:38:39.260028: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 6] === START 18:38:42 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 6] data loaded in 1.7s
+[sixth_order_gram class 6] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class6] step     0/1500 order=6 loss=0.211812 means=0.00012458 cov=0.00000064 m3=0.001366 m4=0.000457 m5=0.000216 m6=0.000078 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class6] step   300/1500 order=6 loss=0.008178 means=0.00000125 cov=0.00000051 m3=0.000037 m4=0.000024 m5=0.000012 m6=0.000006 bounds=0.00014122 elapsed=56.5s
+[sixth_order_gram_class6] step   600/1500 order=6 loss=0.006382 means=0.00000063 cov=0.00000045 m3=0.000030 m4=0.000019 m5=0.000009 m6=0.000005 bounds=0.00007979 elapsed=113.3s
+[sixth_order_gram_class6] step   900/1500 order=6 loss=0.005493 means=0.00000060 cov=0.00000040 m3=0.000027 m4=0.000016 m5=0.000008 m6=0.000004 bounds=0.00004904 elapsed=170.1s
+[sixth_order_gram_class6] step  1200/1500 order=6 loss=0.004899 means=0.00000027 cov=0.00000037 m3=0.000025 m4=0.000014 m5=0.000007 m6=0.000003 bounds=0.00003224 elapsed=226.9s
+[sixth_order_gram_class6] step  1499/1500 order=6 loss=0.004464 means=0.00000421 cov=0.00000036 m3=0.000024 m4=0.000012 m5=0.000006 m6=0.000003 bounds=0.00002422 elapsed=283.4s
+[sixth_order_gram_class6] [final] order=6 use_entropy=False means=0.00000034 cov=3.517035906952515e-07 moments={3: 2.3492442593978914e-05, 4: 1.2100306371899529e-05, 5: 5.798070318238175e-06, 6: 2.9473691635454693e-06} bounds=0.00002361 range=[-0.0738,1.3034]
+[sixth_order_gram class 6] optimization done in 284.9s (4.7 min)
+[sixth_order_gram class 6] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class6.npz
+[sixth_order_gram class 6] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 6] === END 18:43:32 total_wall=289.7s (4.8 min) ===
+2026-08-13 18:43:34.813164: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:43:35.539053: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 7] === START 18:43:39 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 7] data loaded in 2.0s
+[sixth_order_gram class 7] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class7] step     0/1500 order=6 loss=0.095854 means=0.00008645 cov=0.00000073 m3=0.000559 m4=0.000299 m5=0.000061 m6=0.000038 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class7] step   300/1500 order=6 loss=0.008807 means=0.00000119 cov=0.00000040 m3=0.000038 m4=0.000030 m5=0.000014 m6=0.000006 bounds=0.00004400 elapsed=56.5s
+[sixth_order_gram_class7] step   600/1500 order=6 loss=0.006687 means=0.00000133 cov=0.00000032 m3=0.000030 m4=0.000022 m5=0.000010 m6=0.000004 bounds=0.00002320 elapsed=113.4s
+[sixth_order_gram_class7] step   900/1500 order=6 loss=0.005396 means=0.00000262 cov=0.00000026 m3=0.000026 m4=0.000018 m5=0.000007 m6=0.000003 bounds=0.00001442 elapsed=170.3s
+[sixth_order_gram_class7] step  1200/1500 order=6 loss=0.004538 means=0.00000121 cov=0.00000022 m3=0.000023 m4=0.000014 m5=0.000006 m6=0.000002 bounds=0.00000906 elapsed=227.1s
+[sixth_order_gram_class7] step  1499/1500 order=6 loss=0.003911 means=0.00000289 cov=0.00000019 m3=0.000021 m4=0.000012 m5=0.000005 m6=0.000002 bounds=0.00000475 elapsed=283.7s
+[sixth_order_gram_class7] [final] order=6 use_entropy=False means=0.00000110 cov=1.8966379400353617e-07 moments={3: 2.0608258345210184e-05, 4: 1.1698328307829797e-05, 5: 4.8490748593992035e-06, 6: 1.9861737975454027e-06} bounds=0.00000484 range=[-0.1444,1.0700]
+[sixth_order_gram class 7] optimization done in 285.2s (4.8 min)
+[sixth_order_gram class 7] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class7.npz
+[sixth_order_gram class 7] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 7] === END 18:48:29 total_wall=290.3s (4.8 min) ===
+2026-08-13 18:48:31.754900: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:48:32.477406: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 8] === START 18:48:36 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 8] data loaded in 1.8s
+[sixth_order_gram class 8] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class8] step     0/1500 order=6 loss=0.088992 means=0.00005629 cov=0.00000068 m3=0.000566 m4=0.000240 m5=0.000054 m6=0.000030 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class8] step   300/1500 order=6 loss=0.006881 means=0.00000182 cov=0.00000025 m3=0.000029 m4=0.000024 m5=0.000011 m6=0.000005 bounds=0.00000458 elapsed=56.5s
+[sixth_order_gram_class8] step   600/1500 order=6 loss=0.005399 means=0.00000238 cov=0.00000025 m3=0.000024 m4=0.000018 m5=0.000008 m6=0.000004 bounds=0.00000102 elapsed=113.3s
+[sixth_order_gram_class8] step   900/1500 order=6 loss=0.004608 means=0.00000252 cov=0.00000024 m3=0.000022 m4=0.000015 m5=0.000007 m6=0.000003 bounds=0.00000029 elapsed=170.1s
+[sixth_order_gram_class8] step  1200/1500 order=6 loss=0.004022 means=0.00000222 cov=0.00000023 m3=0.000019 m4=0.000013 m5=0.000006 m6=0.000002 bounds=0.00000016 elapsed=226.8s
+[sixth_order_gram_class8] step  1499/1500 order=6 loss=0.003591 means=0.00000071 cov=0.00000023 m3=0.000018 m4=0.000011 m5=0.000005 m6=0.000002 bounds=0.00000013 elapsed=283.3s
+[sixth_order_gram_class8] [final] order=6 use_entropy=False means=0.00000192 cov=2.2827238410627615e-07 moments={3: 1.8021949728523356e-05, 4: 1.0812463491068533e-05, 5: 4.950288825196161e-06, 6: 2.0846284180017257e-06} bounds=0.00000014 range=[-0.0293,1.0099]
+[sixth_order_gram class 8] optimization done in 284.9s (4.7 min)
+[sixth_order_gram class 8] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class8.npz
+[sixth_order_gram class 8] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 8] === END 18:53:25 total_wall=289.8s (4.8 min) ===
+2026-08-13 18:53:28.094648: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-13 18:53:28.820240: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[sixth_order_gram class 9] === START 18:53:32 order=6 entropy=False n_steps=1500 ===
+[sixth_order_gram class 9] data loaded in 2.0s
+[sixth_order_gram class 9] 5000 real samples, D=3072, device=cuda
+[sixth_order_gram_class9] step     0/1500 order=6 loss=0.109701 means=0.00011288 cov=0.00000089 m3=0.000763 m4=0.000242 m5=0.000066 m6=0.000024 bounds=0.00000000 elapsed=0.3s
+[sixth_order_gram_class9] step   300/1500 order=6 loss=0.010475 means=0.00000326 cov=0.00000035 m3=0.000047 m4=0.000036 m5=0.000015 m6=0.000006 bounds=0.00000763 elapsed=56.5s
+[sixth_order_gram_class9] step   600/1500 order=6 loss=0.007554 means=0.00000336 cov=0.00000028 m3=0.000036 m4=0.000026 m5=0.000010 m6=0.000004 bounds=0.00000138 elapsed=113.3s
+[sixth_order_gram_class9] step   900/1500 order=6 loss=0.005831 means=0.00000319 cov=0.00000023 m3=0.000029 m4=0.000019 m5=0.000007 m6=0.000003 bounds=0.00000096 elapsed=170.1s
+[sixth_order_gram_class9] step  1200/1500 order=6 loss=0.004740 means=0.00000244 cov=0.00000019 m3=0.000025 m4=0.000015 m5=0.000006 m6=0.000002 bounds=0.00000097 elapsed=226.9s
+[sixth_order_gram_class9] step  1499/1500 order=6 loss=0.003910 means=0.00000083 cov=0.00000017 m3=0.000021 m4=0.000012 m5=0.000005 m6=0.000002 bounds=0.00000102 elapsed=283.4s
+[sixth_order_gram_class9] [final] order=6 use_entropy=False means=0.00000340 cov=1.6818923143091524e-07 moments={3: 2.1096115476092643e-05, 4: 1.1905731096501566e-05, 5: 4.51383892505679e-06, 6: 1.59621278591523e-06} bounds=0.00000097 range=[-0.1303,1.1035]
+[sixth_order_gram class 9] optimization done in 284.9s (4.7 min)
+[sixth_order_gram class 9] saved to /home/nakano/server/moment_data/deletion/sixth_order_gram/_partial/class9.npz
+[sixth_order_gram class 9] shape=(5000, 32, 32, 3) range=[0.0000,1.0000]
+[sixth_order_gram class 9] === END 18:58:22 total_wall=290.1s (4.8 min) ===
